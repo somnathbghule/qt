@@ -18,10 +18,9 @@ class MyProcess : public QProcess
     Q_OBJECT
 
 public:
-    MyProcess(QObject *parent = nullptr, TabWidget *widget = nullptr ); 
+    MyProcess(QObject *parent , TabWidget *widget , QString &processName); 
     ~MyProcess() {}
-    int winId();    
-
+    QString processName() { return processName_; }
 public slots:
     void myReadyRead();
     void myReadyReadStandardOutput();
@@ -29,21 +28,21 @@ public slots:
 private:
     int winId_;
     TabWidget *widget_;
+    QString processName_;
+    QVBoxLayout *layout_;
 };
 
 
 class TabWidget : public QTabWidget{
     Q_OBJECT
 public:
-    TabWidget(QWidget *parent , QVector <int> &winids);
+    TabWidget(QWidget *parent );
     void closeEvent ( QCloseEvent *event );
-    QVector <int> & winIds() { return winIds_; }
     void setProcess(MyProcess **process);
     MyProcess *process_[2];
 public slots:
 	void tabclicked(int);
 private:
-    QVector <int> winIds_;
 	bool isProcessStarted;
 };
 
