@@ -40,6 +40,8 @@ public:
     void closeEvent ( QCloseEvent *event );
     void setProcess(MyProcess **process);
     MyProcess *process_[2];
+    //void resizeEvent( QResizeEvent *resize );
+    bool event(QEvent *e);
 public slots:
 	void tabclicked(int);
 private:

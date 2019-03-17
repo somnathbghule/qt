@@ -41,18 +41,23 @@ void MyProcess::myReadyReadStandardOutput() {
         QWindow *window = QWindow::fromWinId( winId );
         widget_->addTab(QWidget::createWindowContainer(window), processName_);
 		QWidget *widget = new QWidget();
-		//widget->resize(500,500);
+        //widget_->addTab(layout_, processName_);
         widget_->addTab(widget, processName_);
+
+        //widget->setStyleSheet("backgound-color:red;");
+        widget->resize(300,300);
         //widget->setLayout(layout_);
     }
     if( globWinIds.size() == 2 ){
+        QWindow *window = QWindow::fromWinId( winId );
+        QWidget *pWidget = QWidget::createWindowContainer(window);
         QWidget *widget = widget_->currentWidget();
         widget->setLayout(layout_);
-        QWindow *window = QWindow::fromWinId( winId );
-		layout_->addWidget(QWidget::createWindowContainer(window));
-        qDebug()<<"isEmpty()"<<layout_->isEmpty();
-        //window->requestActivate();
+        qDebug()<<"process2"<<pWidget;
+		layout_->addWidget(pWidget);
+        //pWidget->setFocus();
     }
+    qDebug()<<"isEmpty()"<<layout_->isEmpty();
 }
 
 TabWidget::TabWidget(QWidget *parent ):QTabWidget(parent){
@@ -73,6 +78,18 @@ void TabWidget::setProcess(MyProcess **process){
     process_[0] = process[0];
     process_[1] = process[1];
 }
+/*
+void TabWidget::resizeEvent( QResizeEvent *rsz ){
+    qDebug() << Q_FUNC_INFO;
+    qDebug() << rsz;
+    resize(rsz->size());
+}*/
+
+bool TabWidget :: event(QEvent *e) {
+    //qDebug()<<Q_FUNC_INFO;
+    //qDebug()<<e;
+    return QWidget::event(e);
+}
 void TabWidget::closeEvent (QCloseEvent *event){
     //qDebug() << Q_FUNC_INFO;
     //qDebug()<<"globWinIds"<<globWinIds;
@@ -89,8 +106,8 @@ int main(int argc, char *argv[])
     QString program = "../../2ndpart/app1/app1";
     QString qbit = "../../qBittorrent-master/src/qbittorrent";
     MyProcess *myProcess [2];
-    myProcess [0] = new MyProcess(nullptr, tab, program);
-    myProcess [1] = new MyProcess(nullptr, tab, program);
+    myProcess [0] = new MyProcess(tab, tab, program);
+    myProcess [1] = new MyProcess(tab, tab, program);
     
     myProcess[0]->start( myProcess[0]->processName() );
     tab->setProcess(myProcess);
