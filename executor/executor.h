@@ -31,7 +31,6 @@ private:
     int winId_;
     TabWidget *widget_;
     QString processName_;
-    QVBoxLayout *layout_;
 };
 
 
