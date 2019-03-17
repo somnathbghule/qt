@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <executor.h>
 #include <QDataStream>
+#include <QPalette>
 
 MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processName):QProcess(parent)
 {
@@ -15,6 +16,8 @@ MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processName):Q
             this,SLOT(myReadyReadStandardOutput()));
     connect(this,SIGNAL(started()),
             this,SLOT(myProcessStarted()));
+    connect(this,SIGNAL(winIdChanged(int)),
+            widget,SLOT(createNewTab(int)));
     winId_ = 0;
     widget_ = widget;
     processName_ = processName;
@@ -34,9 +37,10 @@ void MyProcess::myReadyReadStandardOutput() {
     QByteArray out = this->readAllStandardOutput();
     QString str(out.toStdString().c_str());
     winId = str.toInt();
-    qDebug() << "output: "<< winId;
-
     globWinIds.push_back( winId );
+    emit winIdChanged(winId);
+
+/*
     if ( globWinIds.size() == 1 ){
         QWindow *window = QWindow::fromWinId( winId );
         widget_->addTab(QWidget::createWindowContainer(window), processName_);
@@ -44,20 +48,26 @@ void MyProcess::myReadyReadStandardOutput() {
         //widget_->addTab(layout_, processName_);
         widget_->addTab(widget, processName_);
 
-        //widget->setStyleSheet("backgound-color:red;");
-        widget->resize(300,300);
+        //widget->resize(300,300);
+        //widget->setBackgroundRole(QPalette::Base);
         //widget->setLayout(layout_);
     }
     if( globWinIds.size() == 2 ){
+        qDebug() << "output: "<< winId;
+        layout_->setMargin(0);
         QWindow *window = QWindow::fromWinId( winId );
         QWidget *pWidget = QWidget::createWindowContainer(window);
         QWidget *widget = widget_->currentWidget();
+        //pWidget->setStyleSheet("background-color:red;");
         widget->setLayout(layout_);
         qDebug()<<"process2"<<pWidget;
 		layout_->addWidget(pWidget);
+        layout_->update();
+        //widget_->addTab(pWidget, processName_);
         //pWidget->setFocus();
     }
     qDebug()<<"isEmpty()"<<layout_->isEmpty();
+    */
 }
 
 TabWidget::TabWidget(QWidget *parent ):QTabWidget(parent){
@@ -65,6 +75,9 @@ TabWidget::TabWidget(QWidget *parent ):QTabWidget(parent){
     QObject::connect(this,SIGNAL(tabBarClicked(int)),
             this,SLOT(tabclicked(int)));
 	isProcessStarted = false;
+    tab2Widget_ = new QWidget();
+    layout_ = new QVBoxLayout(tab2Widget_);
+    layout_->setMargin(0);
 }
 
 void TabWidget::tabclicked(int index ){
@@ -77,6 +90,26 @@ void TabWidget::tabclicked(int index ){
 void TabWidget::setProcess(MyProcess **process){
     process_[0] = process[0];
     process_[1] = process[1];
+}
+void TabWidget::createNewTab(int winId){
+    qDebug() << Q_FUNC_INFO;
+    qDebug() << winId;
+    if ( globWinIds.size() == 1 ) {
+        //QWidget *widget = new QWidget;
+        //addTab(widget, process_[0]->processName());
+        //QVBoxLayout *layout = new QVBoxLayout(widget);
+        
+        QWindow *window = QWindow::fromWinId( winId );
+
+        addTab(QWidget::createWindowContainer(window), process_[0]->processName());
+        //layout->addWidget(QWidget::createWindowContainer(window));
+        addTab(tab2Widget_, "2");
+    }
+    if ( globWinIds.size() == 2 ){
+        QWindow *window = QWindow::fromWinId( winId );
+        layout_->addWidget(QWidget::createWindowContainer(window));
+        layout_->update();
+    }
 }
 /*
 void TabWidget::resizeEvent( QResizeEvent *rsz ){

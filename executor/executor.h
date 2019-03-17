@@ -25,6 +25,8 @@ public slots:
     void myReadyRead();
     void myReadyReadStandardOutput();
     void myProcessStarted();
+signals:
+    void winIdChanged(int);
 private:
     int winId_;
     TabWidget *widget_;
@@ -44,8 +46,11 @@ public:
     bool event(QEvent *e);
 public slots:
 	void tabclicked(int);
+    void createNewTab(int);
 private:
 	bool isProcessStarted;
+    QVBoxLayout *layout_;
+    QWidget *tab2Widget_;
 };
 
 
