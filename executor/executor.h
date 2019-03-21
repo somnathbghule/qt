@@ -1,4 +1,3 @@
-
 #ifndef executor_h
 #define executor_h
 
@@ -9,6 +8,9 @@
 #include <QCloseEvent>
 #include <QVector>
 #include <QHBoxLayout>
+#include <QThread>
+
+
 
 class TabWidget;
 static QVector <int> globWinIds(0);
@@ -33,7 +35,6 @@ private:
     QString processName_;
 };
 
-
 class TabWidget : public QTabWidget{
     Q_OBJECT
 public:
@@ -43,9 +44,15 @@ public:
     MyProcess *process_[2];
     //void resizeEvent( QResizeEvent *resize );
     bool event(QEvent *e);
+    void startProcess( int index );
+    QWidget *tab2Widget() { return tab2Widget_; }
 public slots:
 	void tabclicked(int);
     void createNewTab(int);
+    void startProcess();
+    void runProcess () { startProcess(1); }
+signals:
+    void tabAdded();
 private:
 	bool isProcessStarted;
     QVBoxLayout *layout_;

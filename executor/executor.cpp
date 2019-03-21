@@ -45,6 +45,8 @@ TabWidget::TabWidget(QWidget *parent ):QTabWidget(parent){
     //setWindowState(Qt::WindowFullScreen);
     QObject::connect(this,SIGNAL(tabBarClicked(int)),
             this,SLOT(tabclicked(int)));
+    QObject::connect(this,SIGNAL(tabAdded()),
+            this,SLOT(startProcess()));
 	isProcessStarted = false;
     tab2Widget_ = new QWidget();
     layout_ = new QVBoxLayout(tab2Widget_);
@@ -55,29 +57,41 @@ void TabWidget::tabclicked(int index ){
 	qDebug()<<"tabbar clicled"<<index;
 	if( index == 1 && !isProcessStarted ){
 		isProcessStarted = true;
-    	process_[1]->start( process_[0]->processName() );
+    	startProcess( 1 );
 	}
+}
+void TabWidget::startProcess(){
+    qDebug() << Q_FUNC_INFO;
+    //process_[1]->start( process_[1]->processName() );
+
 }
 void TabWidget::setProcess(MyProcess **process){
     process_[0] = process[0];
     process_[1] = process[1];
 }
 void TabWidget::createNewTab(int winId){
-    qDebug() << Q_FUNC_INFO;
+    //qDebug() << Q_FUNC_INFO;
     qDebug() << winId;
+    qDebug()<<"current thread"<<QThread::currentThreadId() ;
     if ( globWinIds.size() == 1 ) {
         
         QWindow *window = QWindow::fromWinId( winId );
         addTab(QWidget::createWindowContainer(window), process_[0]->processName());
         addTab(tab2Widget_, "2");
+        //showMaximized();
+        //startProcess(1);
+        //emit tabAdded();
+        //process_[1]->waitForStarted(3000);
     	//process_[1]->start( process_[1]->processName() );
     }
     if ( globWinIds.size() == 2 ){
         QWindow *window = QWindow::fromWinId( winId );
+        //window->hide();
         layout_->addWidget(QWidget::createWindowContainer(window));
         layout_->update();
     }
 }
+
 /*
 void TabWidget::resizeEvent( QResizeEvent *rsz ){
     qDebug() << Q_FUNC_INFO;
@@ -96,23 +110,42 @@ void TabWidget::closeEvent (QCloseEvent *event){
     process_[0]->close();
     process_[1]->close();
 }
+
+
+
+void TabWidget::startProcess(int index){
+    process_[index]->start(process_[index]->processName());
+}
+/*
+void gui_wrapper::paintEvent(QPaintEvent* aEvent)
+{
+    QStyleOption Opt;
+    Opt.init(this);
+    QPainter p(this); 
+    style()->drawPrimitive(QStyle::PE_Widget,&Opt,&p,this);
+}
+*/
+
+#include <QTimer>
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
     TabWidget *tab=new TabWidget( nullptr );
     tab->resize(500,500);
-
     QString program = "../../2ndpart/app1/app1";
     QString qbit = "../../qBittorrent-master/src/qbittorrent";
     MyProcess *myProcess [2];
-    myProcess [0] = new MyProcess(tab, tab, program);
-    myProcess [1] = new MyProcess(tab, tab, program);
-    
-    myProcess[0]->start( myProcess[0]->processName() );
+    myProcess [0] = new MyProcess(tab, tab, qbit);
+    myProcess [1] = new MyProcess(tab->tab2Widget(), tab, program);
+   
+    //myProcess[0]->start( myProcess[0]->processName() );
     tab->setProcess(myProcess);
-    tab->show();
-    //myProcess[1]->start( myProcess[1]->processName() );
+    tab->startProcess(0);
+    //tab->showFullScreen();
+    tab->showMaximized();
+    //tab->startProcess(1);
     return a.exec();
 }
 
