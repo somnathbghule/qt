@@ -20,9 +20,10 @@ class MyProcess : public QProcess
     Q_OBJECT
 
 public:
-    MyProcess(QObject *parent , TabWidget *widget , QString &processName); 
+    MyProcess(QObject *parent , TabWidget *widget , QString &processPath, QString name); 
     ~MyProcess() {}
-    QString processName() { return processName_; }
+    QString processPath() { return processPath_; }
+    QString name() { return name_; }
 public slots:
     void myReadyRead();
     void myReadyReadStandardOutput();
@@ -32,7 +33,8 @@ signals:
 private:
     int winId_;
     TabWidget *widget_;
-    QString processName_;
+    QString processPath_;
+    QString name_;
 };
 
 class TabWidget : public QTabWidget{
