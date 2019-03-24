@@ -7,7 +7,7 @@
 #include <QDataStream>
 #include <QPalette>
 
-MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processName):QProcess(parent)
+MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processPath, QString name):QProcess(parent)
 {
 	
     connect(this,SIGNAL(readyRead()),
@@ -18,9 +18,10 @@ MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processName):Q
             this,SLOT(myProcessStarted()));
     connect(this,SIGNAL(winIdChanged(int)),
             widget,SLOT(createNewTab(int)));
+    name_ = name;
     winId_ = 0;
     widget_ = widget;
-    processName_ = processName;
+    processPath_ = processPath;
 }
 
 void MyProcess::myProcessStarted(){
@@ -62,7 +63,6 @@ void TabWidget::tabclicked(int index ){
 }
 void TabWidget::startProcess(){
     qDebug() << Q_FUNC_INFO;
-    //process_[1]->start( process_[1]->processName() );
 
 }
 void TabWidget::setProcess(MyProcess **process){
@@ -76,13 +76,13 @@ void TabWidget::createNewTab(int winId){
     if ( globWinIds.size() == 1 ) {
         
         QWindow *window = QWindow::fromWinId( winId );
-        addTab(QWidget::createWindowContainer(window), process_[0]->processName());
-        addTab(tab2Widget_, "2");
+        addTab(QWidget::createWindowContainer(window), process_[0]->name());
+        addTab(tab2Widget_, process_[1]->name());
         //showMaximized();
         //startProcess(1);
         //emit tabAdded();
         //process_[1]->waitForStarted(3000);
-    	//process_[1]->start( process_[1]->processName() );
+    	//process_[1]->start( process_[1]->processPath() );
     }
     if ( globWinIds.size() == 2 ){
         QWindow *window = QWindow::fromWinId( winId );
@@ -114,7 +114,7 @@ void TabWidget::closeEvent (QCloseEvent *event){
 
 
 void TabWidget::startProcess(int index){
-    process_[index]->start(process_[index]->processName());
+    process_[index]->start(process_[index]->processPath());
 }
 /*
 void gui_wrapper::paintEvent(QPaintEvent* aEvent)
@@ -134,18 +134,16 @@ int main(int argc, char *argv[])
 
     TabWidget *tab=new TabWidget( nullptr );
     tab->resize(500,500);
-    QString program = "../../2ndpart/app1/app1";
+    putenv("LD_LIBRARY_PATH=/media/msys/20a682fc-f67a-418e-840c-707510ddc9be/qt-5.6/qt-everywhere-opensource-src-5.6.0/qtbase/lib");
+    QString lobstex = "/media/msys/20a682fc-f67a-418e-840c-707510ddc9be/qt-5.6/lobstex-2.0/src/qt/lobstex-qt";
     QString qbit = "../../qBittorrent-master/src/qbittorrent";
     MyProcess *myProcess [2];
-    myProcess [0] = new MyProcess(tab, tab, qbit);
-    myProcess [1] = new MyProcess(tab->tab2Widget(), tab, program);
+    myProcess [0] = new MyProcess(tab, tab, qbit, "qbittorrent");
+    myProcess [1] = new MyProcess(tab->tab2Widget(), tab, lobstex, "lobstex-qt");
    
-    //myProcess[0]->start( myProcess[0]->processName() );
     tab->setProcess(myProcess);
     tab->startProcess(0);
-    //tab->showFullScreen();
     tab->showMaximized();
-    //tab->startProcess(1);
     return a.exec();
 }
 
