@@ -46,19 +46,29 @@ TabWidget::TabWidget(QWidget *parent ):QTabWidget(parent){
     //setWindowState(Qt::WindowFullScreen);
     QObject::connect(this,SIGNAL(tabBarClicked(int)),
             this,SLOT(tabclicked(int)));
-    QObject::connect(this,SIGNAL(tabAdded()),
-            this,SLOT(startProcess()));
+    //QObject::connect(this,SIGNAL(tabAdded()),
+    //        this,SLOT(startProcess()));
+    //QObject::connect(this,SIGNAL(tabAdded()),
+    //        this,SLOT(showMaximized()));
 	isProcessStarted = false;
+    
+    qbitWidget_ = new QWidget();
+    qbitlayout_ = new QVBoxLayout(qbitWidget_);
+    qbitlayout_->setMargin(0);
+    
     tab2Widget_ = new QWidget();
     layout_ = new QVBoxLayout(tab2Widget_);
     layout_->setMargin(0);
+    
+    addTab(qbitWidget_, "1");
+    addTab(tab2Widget_, "2");
 }
 
 void TabWidget::tabclicked(int index ){
 	qDebug()<<"tabbar clicled"<<index;
 	if( index == 1 && !isProcessStarted ){
 		isProcessStarted = true;
-    	startProcess( 1 );
+    	//startProcess( 1 );
 	}
 }
 void TabWidget::startProcess(){
@@ -72,23 +82,29 @@ void TabWidget::setProcess(MyProcess **process){
 void TabWidget::createNewTab(int winId){
     //qDebug() << Q_FUNC_INFO;
     qDebug() << winId;
+    //showMaximized();
     qDebug()<<"current thread"<<QThread::currentThreadId() ;
     if ( globWinIds.size() == 1 ) {
-        
         QWindow *window = QWindow::fromWinId( winId );
-        addTab(QWidget::createWindowContainer(window), process_[0]->name());
-        addTab(tab2Widget_, process_[1]->name());
-        //showMaximized();
+        qbitlayout_->addWidget(QWidget::createWindowContainer(window));
+        qbitlayout_->update();
+        //qbitWidget_->setLayout(qbitlayout_);
         //startProcess(1);
-        //emit tabAdded();
         //process_[1]->waitForStarted(3000);
     	//process_[1]->start( process_[1]->processPath() );
+        //emit tabBarClicked(0);
+
+        //tab1->show();
+        //viewport()->repaint();
+        //startProcess(1);
+        //emit tabAdded();
     }
     if ( globWinIds.size() == 2 ){
         QWindow *window = QWindow::fromWinId( winId );
         //window->hide();
         layout_->addWidget(QWidget::createWindowContainer(window));
         layout_->update();
+        //showMaximized();
     }
 }
 
@@ -144,6 +160,8 @@ int main(int argc, char *argv[])
     tab->setProcess(myProcess);
     tab->startProcess(0);
     tab->showMaximized();
+    QTimer::singleShot(600, myProcess [1], SLOT(start()));
+    //tab->startProcess(1);
     return a.exec();
 }
 
