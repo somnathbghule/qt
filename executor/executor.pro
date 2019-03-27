@@ -3,7 +3,7 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = executor
+TARGET = Lobsty
 INCLUDEPATH += .
 
 QT += core gui
