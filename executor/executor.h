@@ -28,6 +28,7 @@ public slots:
     void myReadyRead();
     void myReadyReadStandardOutput();
     void myProcessStarted();
+    void runProcess () { start(processPath_); }
 signals:
     void winIdChanged(int);
 private:
@@ -41,24 +42,25 @@ class TabWidget : public QTabWidget{
     Q_OBJECT
 public:
     TabWidget(QWidget *parent );
-    void closeEvent ( QCloseEvent *event );
+    void closeEvent( QCloseEvent *event );
     void setProcess(MyProcess **process);
     MyProcess *process_[2];
     //void resizeEvent( QResizeEvent *resize );
     bool event(QEvent *e);
     void startProcess( int index );
-    QWidget *tab2Widget() { return tab2Widget_; }
+    QWidget *tab2Widget() { return lobstexWidget_; }
 public slots:
 	void tabclicked(int);
     void createNewTab(int);
     void startProcess();
-    void runProcess () { startProcess(1); }
 signals:
     void tabAdded();
 private:
 	bool isProcessStarted;
-    QVBoxLayout *layout_;
-    QWidget *tab2Widget_;
+    QVBoxLayout *lobstexLayout_;
+    QWidget *lobstexWidget_;
+    QVBoxLayout *qbitLayout_;
+    QWidget *qbitWidget_;
 };
 
 

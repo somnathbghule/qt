@@ -46,19 +46,29 @@ TabWidget::TabWidget(QWidget *parent ):QTabWidget(parent){
     //setWindowState(Qt::WindowFullScreen);
     QObject::connect(this,SIGNAL(tabBarClicked(int)),
             this,SLOT(tabclicked(int)));
-    QObject::connect(this,SIGNAL(tabAdded()),
-            this,SLOT(startProcess()));
+    //QObject::connect(this,SIGNAL(tabAdded()),
+    //        this,SLOT(startProcess()));
+    //QObject::connect(this,SIGNAL(tabAdded()),
+    //        this,SLOT(showMaximized()));
 	isProcessStarted = false;
-    tab2Widget_ = new QWidget();
-    layout_ = new QVBoxLayout(tab2Widget_);
-    layout_->setMargin(0);
+    
+    qbitWidget_ = new QWidget();
+    qbitLayout_ = new QVBoxLayout(qbitWidget_);
+    qbitLayout_->setMargin(0);
+    
+    lobstexWidget_ = new QWidget();
+    lobstexLayout_ = new QVBoxLayout(lobstexWidget_);
+    lobstexLayout_->setMargin(0);
+    
+    addTab(qbitWidget_, " ");
+    addTab(lobstexWidget_, " ");
 }
 
 void TabWidget::tabclicked(int index ){
 	qDebug()<<"tabbar clicled"<<index;
 	if( index == 1 && !isProcessStarted ){
 		isProcessStarted = true;
-    	startProcess( 1 );
+        startProcess( 1 );
 	}
 }
 void TabWidget::startProcess(){
@@ -68,27 +78,35 @@ void TabWidget::startProcess(){
 void TabWidget::setProcess(MyProcess **process){
     process_[0] = process[0];
     process_[1] = process[1];
+    setTabText(0, process_[0]->name());
+    setTabText(1, process_[1]->name());
 }
 void TabWidget::createNewTab(int winId){
     //qDebug() << Q_FUNC_INFO;
     qDebug() << winId;
+    //showMaximized();
     qDebug()<<"current thread"<<QThread::currentThreadId() ;
     if ( globWinIds.size() == 1 ) {
-        
         QWindow *window = QWindow::fromWinId( winId );
-        addTab(QWidget::createWindowContainer(window), process_[0]->name());
-        addTab(tab2Widget_, process_[1]->name());
-        //showMaximized();
+        qbitLayout_->addWidget(QWidget::createWindowContainer(window));
+        qbitLayout_->update();
+        //qbitWidget_->setLayout(qbitLayout_);
         //startProcess(1);
-        //emit tabAdded();
         //process_[1]->waitForStarted(3000);
     	//process_[1]->start( process_[1]->processPath() );
+        //emit tabBarClicked(0);
+
+        //tab1->show();
+        //viewport()->repaint();
+        //startProcess(1);
+        //emit tabAdded();
     }
     if ( globWinIds.size() == 2 ){
         QWindow *window = QWindow::fromWinId( winId );
         //window->hide();
-        layout_->addWidget(QWidget::createWindowContainer(window));
-        layout_->update();
+        lobstexLayout_->addWidget(QWidget::createWindowContainer(window));
+        lobstexLayout_->update();
+        //showMaximized();
     }
 }
 
@@ -110,8 +128,6 @@ void TabWidget::closeEvent (QCloseEvent *event){
     process_[0]->close();
     process_[1]->close();
 }
-
-
 
 void TabWidget::startProcess(int index){
     process_[index]->start(process_[index]->processPath());
@@ -144,6 +160,8 @@ int main(int argc, char *argv[])
     tab->setProcess(myProcess);
     tab->startProcess(0);
     tab->showMaximized();
+    //QTimer::singleShot(6000, myProcess [1], SLOT(runProcess()));
+    //tab->startProcess(1);
     return a.exec();
 }
 
