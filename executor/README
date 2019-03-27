@@ -1,0 +1,6 @@
+Lobsty is an qt5 based application. It does embed 2 qt applications qbitterent & lobstex-qt.
+
+pre-req:
+  Qt >= 5.6.0
+  qbitterent 
+  lobstex-qt
