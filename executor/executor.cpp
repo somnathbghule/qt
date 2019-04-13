@@ -53,13 +53,10 @@ TabWidget::TabWidget(QWidget *parent ):QTabWidget(parent){
 	isProcessStarted = false;
     
     qbitWidget_ = new QWidget();
-    qbitWidget_ ->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 black, stop: 0.4 rgba(0, 0, 0, 220), stop:1 rgb(0, 0, 0, 225)); border-width: 2px; border-color : cyan; border-style: solid");
     qbitLayout_ = new QVBoxLayout(qbitWidget_);
     qbitLayout_->setMargin(0);
     
     lobstexWidget_ = new QWidget();
-    //TODO : separate stylesheet file
-    lobstexWidget_ ->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 black, stop: 0.4 rgba(0, 0, 0, 220), stop:1 rgb(0, 0, 0, 225)); border-width: 2px; border-color : cyan; border-style: solid");
     lobstexLayout_ = new QVBoxLayout(lobstexWidget_);
     lobstexLayout_->setMargin(0);
 
@@ -164,7 +161,11 @@ int main(int argc, char *argv[])
     tab->startProcess(0);
     tab->showMaximized();
     //Tab stylesheet
-    tab->setStyleSheet("color : cyan ; font: bold 12pt; padding: 2px; min-width: 40ex; background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,stop: 0 black, stop: 0.4 #DDDDDA, stop: 1.0 black);");
+    QFile stylesheet("formStyle.qss");
+    stylesheet.open(QFile::ReadOnly);
+    QString setSheet = QLatin1String(stylesheet.readAll());
+    tab->setStyleSheet(setSheet);
+
     //end
     //QTimer::singleShot(6000, myProcess [1], SLOT(runProcess()));
     //tab->startProcess(1);

@@ -12,3 +12,6 @@ QT += widgets
 # Input
 SOURCES += executor.cpp
 HEADERS += executor.h
+
+DISTFILES += \
+    formStyle.qss
