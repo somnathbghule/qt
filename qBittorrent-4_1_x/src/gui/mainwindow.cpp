@@ -404,6 +404,7 @@ MainWindow::MainWindow(QWidget *parent)
         m_ui->actionAutoShutdownDisabled->setChecked(true);
 
     // Load Window state and sizes
+    QTextStream(stdout) << winId() << endl;	//somnath
     readSettings();
 
 #ifndef Q_OS_MAC
