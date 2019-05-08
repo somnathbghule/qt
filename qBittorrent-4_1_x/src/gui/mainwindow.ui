@@ -159,7 +159,6 @@
    <addaction name="actionBottomPriority"/>
    <addaction name="separator"/>
    <addaction name="actionOptions"/>
-   <addaction name="actionLock"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
@@ -335,17 +334,6 @@
    </property>
    <property name="text">
     <string>Search &amp;Engine</string>
-   </property>
-  </action>
-  <action name="actionLock">
-   <property name="text">
-    <string>L&amp;ock qBittorrent</string>
-   </property>
-   <property name="iconText">
-    <string>Lock</string>
-   </property>
-   <property name="shortcut">
-    <string notr="true">Ctrl+L</string>
    </property>
   </action>
   <action name="actionDonateMoney">

@@ -194,7 +194,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionExit->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
     m_ui->actionIncreasePriority->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
     m_ui->actionTopPriority->setIcon(GuiIconProvider::instance()->getIcon("go-top"));
-    m_ui->actionLock->setIcon(GuiIconProvider::instance()->getIcon("object-locked"));
+   // m_ui->actionLock->setIcon(GuiIconProvider::instance()->getIcon("object-locked"));
     m_ui->actionOptions->setIcon(GuiIconProvider::instance()->getIcon("configure", "preferences-system"));
     m_ui->actionPause->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
     m_ui->actionPauseAll->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
@@ -203,12 +203,12 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
     m_ui->actionManageCookies->setIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
 
-    QMenu *lockMenu = new QMenu(this);
-    QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("&Set Password"));
-    connect(defineUiLockPasswdAct, &QAction::triggered, this, &MainWindow::defineUILockPassword);
-    QAction *clearUiLockPasswdAct = lockMenu->addAction(tr("&Clear Password"));
-    connect(clearUiLockPasswdAct, &QAction::triggered, this, &MainWindow::clearUILockPassword);
-    m_ui->actionLock->setMenu(lockMenu);
+   // QMenu *lockMenu = new QMenu(this);
+    //QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("&Set Password"));
+    //connect(defineUiLockPasswdAct, &QAction::triggered, this, &MainWindow::defineUILockPassword);
+    //QAction *clearUiLockPasswdAct = lockMenu->addAction(tr("&Clear Password"));
+    //connect(clearUiLockPasswdAct, &QAction::triggered, this, &MainWindow::clearUILockPassword);
+   // m_ui->actionLock->setMenu(lockMenu);
 
     // Creating Bittorrent session
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::fullDiskError, this, &MainWindow::fullDiskError);
@@ -237,7 +237,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_searchFilter->setFixedWidth(Utils::Gui::scaledSize(this, 200));
     m_searchFilter->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_searchFilter, &QWidget::customContextMenuRequested, this, &MainWindow::showFilterContextMenu);
-    m_searchFilterAction = m_ui->toolBar->insertWidget(m_ui->actionLock, m_searchFilter);
+    m_searchFilterAction = m_ui->toolBar->insertWidget(0, m_searchFilter);
 
     QWidget *spacer = new QWidget(this);
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -632,7 +632,7 @@ void MainWindow::toolbarFollowSystem()
     Preferences::instance()->setToolbarTextPosition(Qt::ToolButtonFollowStyle);
 }
 
-void MainWindow::defineUILockPassword()
+/* void MainWindow::defineUILockPassword()
 {
     QString oldPassMd5 = Preferences::instance()->getUILockPasswordMD5();
     if (oldPassMd5.isNull())
@@ -651,17 +651,20 @@ void MainWindow::defineUILockPassword()
             QMessageBox::information(this, tr("Password update"), tr("The UI lock password has been successfully updated"));
         }
     }
-}
+}*/
 
+/*
 void MainWindow::clearUILockPassword()
 {
     QMessageBox::StandardButton answer = QMessageBox::question(this, tr("Clear the password"), tr("Are you sure you want to clear the password?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
     if (answer == QMessageBox::Yes)
         Preferences::instance()->clearUILockPassword();
 }
+*/
 
-void MainWindow::on_actionLock_triggered()
+/*void MainWindow::on_actionLock_triggered()
 {
+
     Preferences *const pref = Preferences::instance();
     // Check if there is a password
     if (pref->getUILockPasswordMD5().isEmpty()) {
@@ -674,9 +677,10 @@ void MainWindow::on_actionLock_triggered()
     // Lock the interface
     m_uiLocked = true;
     pref->setUILocked(true);
+
     m_trayIconMenu->setEnabled(false);
     hide();
-}
+}*/
 
 void MainWindow::handleRSSUnreadCountUpdated(int count)
 {
@@ -1435,7 +1439,7 @@ void MainWindow::loadPreferences(bool configureSession)
     Q_UNUSED(configureSession);
 #else
     const bool newSystrayIntegration = pref->systrayIntegration();
-    m_ui->actionLock->setVisible(newSystrayIntegration);
+   // m_ui->actionLock->setVisible(newSystrayIntegration);
     if (newSystrayIntegration != (m_systrayIcon != nullptr)) {
         if (newSystrayIntegration) {
             // create the trayicon
