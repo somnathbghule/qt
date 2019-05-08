@@ -240,7 +240,7 @@ QString TransferListDelegate::getStatusString(const BitTorrent::TorrentState sta
         str = tr("[F] Downloading", "used when the torrent is forced started. You probably shouldn't translate the F.");
         break;
     case BitTorrent::TorrentState::Allocating:
-        str = tr("Allocating", "qBittorrent is allocating the files on disk");
+        str = tr("Allocating", "LOBSTY is allocating the files on disk");
         break;
     case BitTorrent::TorrentState::Uploading:
     case BitTorrent::TorrentState::StalledUploading:

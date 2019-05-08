@@ -167,7 +167,7 @@ namespace
     bool doesQFileIconProviderWork()
     {
         QFileIconProvider provider;
-        const char PSEUDO_UNIQUE_FILE_NAME[] = "/tmp/qBittorrent-test-QFileIconProvider-845eb448-7ad5-4cdb-b764-b3f322a266a9";
+        const char PSEUDO_UNIQUE_FILE_NAME[] = "/tmp/LOBSTY-test-QFileIconProvider-845eb448-7ad5-4cdb-b764-b3f322a266a9";
         QIcon testIcon1 = provider.icon(QFileInfo(
             QLatin1String(PSEUDO_UNIQUE_FILE_NAME) + QLatin1String(".pdf")));
         QIcon testIcon2 = provider.icon(QFileInfo(
