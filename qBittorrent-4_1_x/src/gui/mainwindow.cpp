@@ -187,7 +187,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionStatistics->setIcon(GuiIconProvider::instance()->getIcon("view-statistics"));
     m_ui->actionDecreasePriority->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
     m_ui->actionBottomPriority->setIcon(GuiIconProvider::instance()->getIcon("go-bottom"));
-    m_ui->actionDelete->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
+    //m_ui->actionDelete->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
+    m_ui->actionDelete->setIcon(GuiIconProvider::instance()->getIcon("dialog-cancel"));	//Tejaswini : Changed delete button icon
     m_ui->actionDocumentation->setIcon(GuiIconProvider::instance()->getIcon("help-contents"));
     m_ui->actionDonateMoney->setIcon(GuiIconProvider::instance()->getIcon("wallet-open"));
     m_ui->actionExit->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
