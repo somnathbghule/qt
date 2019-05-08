@@ -156,14 +156,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
-    setWindowTitle("qBittorrent " QBT_VERSION);
+    setWindowTitle("LOBSTY " QBT_VERSION);
     m_displaySpeedInTitle = pref->speedInTitleBar();
     // Setting icons
 #ifndef Q_OS_MAC
 #ifdef Q_OS_UNIX
     const QIcon appLogo = Preferences::instance()->useSystemIconTheme()
-        ? QIcon::fromTheme("qbittorrent", QIcon(":/icons/skin/qbittorrent-tray.svg"))
-        : QIcon(":/icons/skin/qbittorrent-tray.svg");
+        ? QIcon::fromTheme("LOBSTY", QIcon(":/icons/skin/qbittorrent-tray.svg"))
+        : QIcon(":/icons/skin/qbittorrent-tray.svg");       //TODO :change image
 #else
     const QIcon appLogo(":/icons/skin/qbittorrent-tray.svg");
 #endif // Q_OS_UNIX
@@ -187,13 +187,14 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionStatistics->setIcon(GuiIconProvider::instance()->getIcon("view-statistics"));
     m_ui->actionDecreasePriority->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
     m_ui->actionBottomPriority->setIcon(GuiIconProvider::instance()->getIcon("go-bottom"));
-    m_ui->actionDelete->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
+    //m_ui->actionDelete->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
+    m_ui->actionDelete->setIcon(GuiIconProvider::instance()->getIcon("dialog-cancel"));	//Tejaswini : Changed delete button icon
     m_ui->actionDocumentation->setIcon(GuiIconProvider::instance()->getIcon("help-contents"));
     m_ui->actionDonateMoney->setIcon(GuiIconProvider::instance()->getIcon("wallet-open"));
     m_ui->actionExit->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
     m_ui->actionIncreasePriority->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
     m_ui->actionTopPriority->setIcon(GuiIconProvider::instance()->getIcon("go-top"));
-    m_ui->actionLock->setIcon(GuiIconProvider::instance()->getIcon("object-locked"));
+   // m_ui->actionLock->setIcon(GuiIconProvider::instance()->getIcon("object-locked"));
     m_ui->actionOptions->setIcon(GuiIconProvider::instance()->getIcon("configure", "preferences-system"));
     m_ui->actionPause->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
     m_ui->actionPauseAll->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
@@ -202,12 +203,12 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
     m_ui->actionManageCookies->setIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
 
-    QMenu *lockMenu = new QMenu(this);
-    QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("&Set Password"));
-    connect(defineUiLockPasswdAct, &QAction::triggered, this, &MainWindow::defineUILockPassword);
-    QAction *clearUiLockPasswdAct = lockMenu->addAction(tr("&Clear Password"));
-    connect(clearUiLockPasswdAct, &QAction::triggered, this, &MainWindow::clearUILockPassword);
-    m_ui->actionLock->setMenu(lockMenu);
+   // QMenu *lockMenu = new QMenu(this);
+    //QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("&Set Password"));
+    //connect(defineUiLockPasswdAct, &QAction::triggered, this, &MainWindow::defineUILockPassword);
+    //QAction *clearUiLockPasswdAct = lockMenu->addAction(tr("&Clear Password"));
+    //connect(clearUiLockPasswdAct, &QAction::triggered, this, &MainWindow::clearUILockPassword);
+   // m_ui->actionLock->setMenu(lockMenu);
 
     // Creating Bittorrent session
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::fullDiskError, this, &MainWindow::fullDiskError);
@@ -236,7 +237,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_searchFilter->setFixedWidth(Utils::Gui::scaledSize(this, 200));
     m_searchFilter->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_searchFilter, &QWidget::customContextMenuRequested, this, &MainWindow::showFilterContextMenu);
-    m_searchFilterAction = m_ui->toolBar->insertWidget(m_ui->actionLock, m_searchFilter);
+    m_searchFilterAction = m_ui->toolBar->insertWidget(0, m_searchFilter);
 
     QWidget *spacer = new QWidget(this);
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -419,7 +420,7 @@ MainWindow::MainWindow(QWidget *parent)
             if (pref->minimizeToTray()) {
                 hide();
                 if (!pref->minimizeToTrayNotified()) {
-                    showNotificationBaloon(tr("qBittorrent is minimized to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
+                    showNotificationBaloon(tr("LOBSTY is minimized to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
                     pref->setMinimizeToTrayNotified(true);
                 }
             }
@@ -460,7 +461,7 @@ MainWindow::MainWindow(QWidget *parent)
 #ifdef Q_OS_WIN
     if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet())) {
         if (QMessageBox::question(this, tr("Torrent file association"),
-                                  tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
+                                  tr("LOBSTY is not the default application to open torrent files or Magnet links.\nDo you want to associate LOBSTY to torrent files and Magnet links?"),
                                   QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
             Preferences::setTorrentFileAssoc(true);
             Preferences::setMagnetLinkAssoc(true);
@@ -631,7 +632,7 @@ void MainWindow::toolbarFollowSystem()
     Preferences::instance()->setToolbarTextPosition(Qt::ToolButtonFollowStyle);
 }
 
-void MainWindow::defineUILockPassword()
+/* void MainWindow::defineUILockPassword()
 {
     QString oldPassMd5 = Preferences::instance()->getUILockPasswordMD5();
     if (oldPassMd5.isNull())
@@ -650,17 +651,20 @@ void MainWindow::defineUILockPassword()
             QMessageBox::information(this, tr("Password update"), tr("The UI lock password has been successfully updated"));
         }
     }
-}
+}*/
 
+/*
 void MainWindow::clearUILockPassword()
 {
     QMessageBox::StandardButton answer = QMessageBox::question(this, tr("Clear the password"), tr("Are you sure you want to clear the password?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
     if (answer == QMessageBox::Yes)
         Preferences::instance()->clearUILockPassword();
 }
+*/
 
-void MainWindow::on_actionLock_triggered()
+/*void MainWindow::on_actionLock_triggered()
 {
+
     Preferences *const pref = Preferences::instance();
     // Check if there is a password
     if (pref->getUILockPasswordMD5().isEmpty()) {
@@ -673,9 +677,10 @@ void MainWindow::on_actionLock_triggered()
     // Lock the interface
     m_uiLocked = true;
     pref->setUILocked(true);
+
     m_trayIconMenu->setEnabled(false);
     hide();
-}
+}*/
 
 void MainWindow::handleRSSUnreadCountUpdated(int count)
 {
@@ -1076,7 +1081,7 @@ void MainWindow::notifyOfUpdate(QString)
 {
     // Show restart message
     m_statusBar->showRestartRequired();
-    Logger::instance()->addMessage(tr("qBittorrent was just updated and needs to be restarted for the changes to be effective.")
+    Logger::instance()->addMessage(tr("LOBSTY was just updated and needs to be restarted for the changes to be effective.")
                                    , Log::CRITICAL);
     // Delete the executable watcher
     delete m_executableWatcher;
@@ -1162,7 +1167,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
         hide();
         e->accept();
         if (!pref->closeToTrayNotified()) {
-            showNotificationBaloon(tr("qBittorrent is closed to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
+            showNotificationBaloon(tr("LOBSTY is closed to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
             pref->setCloseToTrayNotified(true);
         }
         return;
@@ -1173,9 +1178,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
         if (e->spontaneous() || m_forceExit) {
             if (!isVisible())
                 show();
-            QMessageBox confirmBox(QMessageBox::Question, tr("Exiting qBittorrent"),
+            QMessageBox confirmBox(QMessageBox::Question, tr("Exiting LOBSTY"),
                                    // Split it because the last sentence is used in the Web UI
-                                   tr("Some files are currently transferring.") + '\n' + tr("Are you sure you want to quit qBittorrent?"),
+                                   tr("Some files are currently transferring.") + '\n' + tr("Are you sure you want to quit LOBSTY?"),
                                    QMessageBox::NoButton, this);
             QPushButton *noBtn = confirmBox.addButton(tr("&No"), QMessageBox::NoRole);
             confirmBox.addButton(tr("&Yes"), QMessageBox::YesRole);
@@ -1251,7 +1256,7 @@ bool MainWindow::event(QEvent *e)
                     e->ignore();
                     QTimer::singleShot(0, this, &QWidget::hide);
                     if (!pref->minimizeToTrayNotified()) {
-                        showNotificationBaloon(tr("qBittorrent is minimized to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
+                        showNotificationBaloon(tr("LOBSTY is minimized to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
                         pref->setMinimizeToTrayNotified(true);
                     }
                     return true;
@@ -1434,7 +1439,7 @@ void MainWindow::loadPreferences(bool configureSession)
     Q_UNUSED(configureSession);
 #else
     const bool newSystrayIntegration = pref->systrayIntegration();
-    m_ui->actionLock->setVisible(newSystrayIntegration);
+   // m_ui->actionLock->setVisible(newSystrayIntegration);
     if (newSystrayIntegration != (m_systrayIcon != nullptr)) {
         if (newSystrayIntegration) {
             // create the trayicon
@@ -1563,7 +1568,7 @@ void MainWindow::updateGUI()
     if (m_systrayIcon) {
 #ifdef Q_OS_UNIX
         QString html = "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>";
-        html += "qBittorrent";
+        html += "LOBSTY";
         html += "</div>";
         html += "<div style='vertical-align: baseline; height: 18px;'>";
         html += "<img src=':/icons/skin/download.svg' height='14'/>&nbsp;" + tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
@@ -1588,7 +1593,7 @@ void MainWindow::updateGUI()
 #endif // Q_OS_MAC
 
     if (m_displaySpeedInTitle) {
-        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
+        setWindowTitle(tr("[D: %1, U: %2] LOBSTY %3", "D = Download; U = Upload; %3 is LOBSTY version")
             .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true)
                 , Utils::Misc::friendlyUnit(status.payloadUploadRate, true)
                 , QBT_VERSION));
@@ -1612,8 +1617,8 @@ void MainWindow::showNotificationBaloon(QString title, QString msg) const
     // to start their daemons at the session startup and have it sit
     // idling for the whole session.
     QVariantMap hints;
-    hints["desktop-entry"] = "qBittorrent";
-    QDBusPendingReply<uint> reply = notifications.Notify("qBittorrent", 0, "qbittorrent", title,
+    hints["desktop-entry"] = "LOBSTY";
+    QDBusPendingReply<uint> reply = notifications.Notify("LOBSTY", 0, "LOBSTY", title,
                                                          msg, QStringList(), hints, -1);
     reply.waitForFinished();
     if (!reply.isError())
@@ -1770,7 +1775,7 @@ void MainWindow::on_actionSpeedInTitleBar_triggered()
     if (m_displaySpeedInTitle)
         updateGUI();
     else
-        setWindowTitle("qBittorrent " QBT_VERSION);
+        setWindowTitle("LOBSTY " QBT_VERSION);
 }
 
 void MainWindow::on_actionRSSReader_triggered()
@@ -1851,7 +1856,7 @@ void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVers
 {
     QMessageBox::StandardButton answer = QMessageBox::Yes;
     if (updateAvailable) {
-        answer = QMessageBox::question(this, tr("qBittorrent Update Available")
+        answer = QMessageBox::question(this, tr("LOBSTY Update Available")
             , tr("A new version is available.") + "<br/>"
                 + tr("Do you want to download %1?").arg(newVersion) + "<br/><br/>"
                 + QString("<a href=\"https://www.qbittorrent.org/news.php\">%1</a>").arg(tr("Open changelog..."))
@@ -1863,7 +1868,7 @@ void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVers
         }
     }
     else if (invokedByUser) {
-        QMessageBox::information(this, tr("Already Using the Latest qBittorrent Version"),
+        QMessageBox::information(this, tr("Already Using the Latest LOBSTY Version"),
                                  tr("No updates available.\nYou are already using the latest version."));
     }
     sender()->deleteLater();

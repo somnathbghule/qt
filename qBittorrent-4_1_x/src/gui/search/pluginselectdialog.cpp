@@ -205,7 +205,7 @@ void PluginSelectDialog::on_actionUninstall_triggered()
     }
 
     if (error)
-        QMessageBox::warning(this, tr("Uninstall warning"), tr("Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.\nThose plugins were disabled."));
+        QMessageBox::warning(this, tr("Uninstall warning"), tr("Some plugins could not be uninstalled because they are included in LOBSTY. Only the ones you added yourself can be uninstalled.\nThose plugins were disabled."));
     else
         QMessageBox::information(this, tr("Uninstall success"), tr("All selected plugins were uninstalled successfully"));
 }
@@ -362,7 +362,7 @@ void PluginSelectDialog::askForLocalPlugin()
 {
     const QStringList pathsList = QFileDialog::getOpenFileNames(
                 nullptr, tr("Select search plugins"), QDir::homePath(),
-                tr("qBittorrent search plugin") + QLatin1String(" (*.py)")
+                tr("LOBSTY search plugin") + QLatin1String(" (*.py)")
                 );
     for (const QString &path : pathsList) {
         startAsyncOp();

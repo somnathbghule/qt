@@ -49,9 +49,9 @@ public:
 
         // Title
 #if defined(__x86_64__) || defined(_M_X64)
-        labelName->setText("<b><h2>qBittorrent " QBT_VERSION " (64-bit)</h2></b>");
+        labelName->setText("<b><h2>LOBSTY " QBT_VERSION " (64-bit)</h2></b>");
 #else
-        labelName->setText("<b><h2>qBittorrent " QBT_VERSION " (32-bit)</h2></b>");
+        labelName->setText("<b><h2>LOBSTY " QBT_VERSION " (32-bit)</h2></b>");
 #endif
 
         logo->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/skin/qbittorrent-tray.svg", this, 32));
@@ -67,8 +67,8 @@ public:
             "<tr><td>%5</td><td><a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a></td></tr>"
             "</table>"
             "</p>")
-            .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.")
-                , tr("Copyright %1 2006-2019 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT))
+            .arg(tr("An advanced LOBSTY client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.")
+                , tr("Copyright %1 2006-2019 The LOBSTY project").arg(QString::fromUtf8(C_COPYRIGHT))
                 , tr("Home Page:")
                 , tr("Forum:")
                 , tr("Bug Tracker:"));
