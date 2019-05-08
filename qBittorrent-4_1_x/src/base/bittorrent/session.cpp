@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2006  Christophe Dumez <chris@LOBSTY.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -105,7 +105,7 @@ using NETIO_STATUS = LONG;
 
 static const char PEER_ID[] = "qB";
 static const char RESUME_FOLDER[] = "BT_backup";
-static const char USER_AGENT[] = "qBittorrent/" QBT_VERSION_2;
+static const char USER_AGENT[] = "LOBSTY/" QBT_VERSION_2;
 
 namespace libt = libtorrent;
 using namespace BitTorrent;
@@ -1213,8 +1213,8 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
             if (ip.isEmpty()) {
                 ip = QLatin1String("0.0.0.0");
                 interfacesStr = std::string((QString("%1:%2").arg(ip).arg(port)).toLatin1().constData());
-                logger->addMessage(tr("qBittorrent is trying to listen on any interface port: %1"
-                                      , "e.g: qBittorrent is trying to listen on any interface port: TCP/6881")
+                logger->addMessage(tr("LOBSTY is trying to listen on any interface port: %1"
+                                      , "e.g: LOBSTY is trying to listen on any interface port: TCP/6881")
                                    .arg(QString::number(port))
                                    , Log::INFO);
 
@@ -1226,8 +1226,8 @@ void Session::configure(libtorrent::settings_pack &settingsPack)
             if (!ec) {
                 interfacesStr = std::string((addr.is_v6() ? QString("[%1]:%2") : QString("%1:%2"))
                                             .arg(ip).arg(port).toLatin1().constData());
-                logger->addMessage(tr("qBittorrent is trying to listen on interface %1 port: %2"
-                                      , "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881")
+                logger->addMessage(tr("LOBSTY is trying to listen on interface %1 port: %2"
+                                      , "e.g: LOBSTY is trying to listen on interface 192.168.0.1 port: TCP/6881")
                                    .arg(ip).arg(port)
                                    , Log::INFO);
                 settingsPack.set_str(libt::settings_pack::listen_interfaces, interfacesStr);
@@ -2561,7 +2561,7 @@ const QStringList Session::getListeningIPs()
     // Make sure there is at least one IP
     // At this point there was a valid network interface, with no suitable IP.
     if (IPs.size() == 0) {
-        logger->addMessage(tr("qBittorrent didn't find an %1 local address to listen on", "qBittorrent didn't find an IPv4 local address to listen on").arg(listenIPv6 ? "IPv6" : "IPv4"), Log::CRITICAL);
+        logger->addMessage(tr("LOBSTY didn't find an %1 local address to listen on", "LOBSTY didn't find an IPv4 local address to listen on").arg(listenIPv6 ? "IPv6" : "IPv4"), Log::CRITICAL);
         IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
         return IPs;
     }
@@ -2585,18 +2585,18 @@ void Session::configureListeningInterface()
 
     for (const QString ip : IPs) {
         if (ip.isEmpty()) {
-            logger->addMessage(tr("qBittorrent is trying to listen on any interface port: %1", "e.g: qBittorrent is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), Log::INFO);
+            logger->addMessage(tr("LOBSTY is trying to listen on any interface port: %1", "e.g: LOBSTY is trying to listen on any interface port: TCP/6881").arg(QString::number(port)), Log::INFO);
             m_nativeSession->listen_on(ports, ec, 0, libt::session::listen_no_system_port);
 
             if (ec)
-                logger->addMessage(tr("qBittorrent failed to listen on any interface port: %1. Reason: %2.", "e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface" ).arg(QString::number(port)).arg(QString::fromLocal8Bit(ec.message().c_str())), Log::CRITICAL);
+                logger->addMessage(tr("LOBSTY failed to listen on any interface port: %1. Reason: %2.", "e.g: LOBSTY failed to listen on any interface port: TCP/6881. Reason: no such interface" ).arg(QString::number(port)).arg(QString::fromLocal8Bit(ec.message().c_str())), Log::CRITICAL);
 
             return;
         }
 
         m_nativeSession->listen_on(ports, ec, ip.toLatin1().constData(), libt::session::listen_no_system_port);
         if (!ec) {
-            logger->addMessage(tr("qBittorrent is trying to listen on interface %1 port: %2", "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ip).arg(port), Log::INFO);
+            logger->addMessage(tr("LOBSTY is trying to listen on interface %1 port: %2", "e.g: LOBSTY is trying to listen on interface 192.168.0.1 port: TCP/6881").arg(ip).arg(port), Log::INFO);
             return;
         }
     }
@@ -4418,7 +4418,7 @@ void Session::handleListenSucceededAlert(libt::listen_succeeded_alert *p)
         proto = "TCP_SSL";
     qDebug() << "Successfully listening on " << proto << p->endpoint.address().to_string(ec).c_str() << '/' << p->endpoint.port();
     Logger::instance()->addMessage(
-        tr("qBittorrent is successfully listening on interface %1 port: %2/%3", "e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881")
+        tr("LOBSTY is successfully listening on interface %1 port: %2/%3", "e.g: LOBSTY is successfully listening on interface 192.168.0.1 port: TCP/6881")
             .arg(p->endpoint.address().to_string(ec).c_str(), proto, QString::number(p->endpoint.port())), Log::INFO);
 
     // Force reannounce on all torrents because some trackers blacklist some ports
@@ -4445,8 +4445,8 @@ void Session::handleListenFailedAlert(libt::listen_failed_alert *p)
         proto = "SOCKS5";
     qDebug() << "Failed listening on " << proto << p->endpoint.address().to_string(ec).c_str() << '/' << p->endpoint.port();
     Logger::instance()->addMessage(
-        tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.",
-            "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.")
+        tr("LOBSTY failed listening on interface %1 port: %2/%3. Reason: %4.",
+            "e.g: LOBSTY failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.")
         .arg(p->endpoint.address().to_string(ec).c_str(), proto, QString::number(p->endpoint.port())
             , QString::fromLocal8Bit(p->error.message().c_str()))
         , Log::CRITICAL);
