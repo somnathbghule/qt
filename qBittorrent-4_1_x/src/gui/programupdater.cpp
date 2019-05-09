@@ -66,7 +66,7 @@ void ProgramUpdater::checkForUpdates()
 void ProgramUpdater::rssDownloadFinished(const QString &url, const QByteArray &data)
 {
     Q_UNUSED(url);
-    qDebug("Finished downloading the new qBittorrent updates RSS");
+    qDebug("Finished downloading the new LOBSTY updates RSS");
 
 #ifdef Q_OS_MAC
     const QString OS_TYPE {"Mac OS X"};
@@ -122,7 +122,7 @@ void ProgramUpdater::rssDownloadFailed(const QString &url, const QString &error)
 {
     Q_UNUSED(url);
 
-    qDebug() << "Downloading the new qBittorrent updates RSS failed:" << error;
+    qDebug() << "Downloading the new LOBSTY updates RSS failed:" << error;
     emit updateCheckFinished(false, QString(), m_invokedByUser);
 }
 

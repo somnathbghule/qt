@@ -120,7 +120,6 @@
     <addaction name="separator"/>
     <addaction name="actionStatistics"/>
     <addaction name="separator"/>
-    <addaction name="actionLock"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -349,7 +348,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Exit qBittorrent</string>
+    <string>&amp;Exit LOBSTY</string>
    </property>
   </action>
   <action name="actionAutoSuspend">

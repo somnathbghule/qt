@@ -235,7 +235,7 @@ void RSSWidget::askNewFolder()
     QString error;
     const QString newFolderPath = RSS::Item::joinPath(rssDestFolder->path(), newName);
     if (!RSS::Session::instance()->addFolder(newFolderPath, &error))
-        QMessageBox::warning(this, "qBittorrent", error, QMessageBox::Ok);
+        QMessageBox::warning(this, "LOBSTY", error, QMessageBox::Ok);
 
     // Expand destination folder to display new feed
     if (destItem && (destItem != m_feedListWidget->stickyUnreadItem()))
@@ -276,7 +276,7 @@ void RSSWidget::on_newFeedButton_clicked()
     // NOTE: We still add feed using legacy way (with URL as feed name)
     const QString newFeedPath = RSS::Item::joinPath(rssDestFolder->path(), newURL);
     if (!RSS::Session::instance()->addFeed(newURL, newFeedPath, &error))
-        QMessageBox::warning(this, "qBittorrent", error, QMessageBox::Ok);
+        QMessageBox::warning(this, "LOBSTY", error, QMessageBox::Ok);
 
     // Expand destination folder to display new feed
     if (destItem && (destItem != m_feedListWidget->stickyUnreadItem()))
