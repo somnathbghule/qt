@@ -123,7 +123,7 @@ Application::Application(const QString &id, int &argc, char **argv)
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
 
-    setApplicationName("qBittorrent");
+    setApplicationName("LOBSTY");
     setOrganizationDomain("qbittorrent.org");
     validateCommandLineParameters();
 
@@ -161,7 +161,7 @@ Application::Application(const QString &id, int &argc, char **argv)
     if (isFileLoggerEnabled())
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
 
-    Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(QBT_VERSION));
+    Logger::instance()->addMessage(tr("LOBSTY %1 started", "LOBSTY v3.2.0alpha started").arg(QBT_VERSION));
 }
 
 Application::~Application()
@@ -344,14 +344,14 @@ void Application::sendNotificationEmail(const BitTorrent::TorrentHandle *torrent
         + tr("Save path: %1").arg(torrent->savePath()) + "\n\n"
         + tr("The torrent was downloaded in %1.", "The torrent was downloaded in 1 hour and 20 seconds")
             .arg(Utils::Misc::userFriendlyDuration(torrent->activeTime())) + "\n\n\n"
-        + tr("Thank you for using qBittorrent.") + '\n';
+        + tr("Thank you for using LOBSTY.") + '\n';
 
     // Send the notification email
     const Preferences *pref = Preferences::instance();
     Net::Smtp *smtp = new Net::Smtp(this);
     smtp->sendMail(pref->getMailNotificationSender(),
                      pref->getMailNotificationEmail(),
-                     tr("[qBittorrent] '%1' has finished downloading").arg(torrent->name()),
+                     tr("[LOBSTY] '%1' has finished downloading").arg(torrent->name()),
                      content);
 }
 
@@ -543,7 +543,7 @@ int Application::exec(const QStringList &params)
     Preferences *const pref = Preferences::instance();
     // Display some information to the user
     const QString mesg = QString("\n******** %1 ********\n").arg(tr("Information"))
-        + tr("To control qBittorrent, access the Web UI at %1")
+        + tr("To control LOBSTY, access the Web UI at %1")
             .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n'
         + tr("The Web UI administrator user name is: %1").arg(pref->getWebUiUsername()) + '\n';
     printf("%s", qUtf8Printable(mesg));

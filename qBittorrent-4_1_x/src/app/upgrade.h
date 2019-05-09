@@ -185,7 +185,7 @@ bool upgrade(bool ask = true)
         upgradeResumeFile(backupFolderDir.absoluteFilePath(backupFile));
     // ****************************************************************************************
 
-    SettingsPtr oldResumeSettings = Profile::instance().applicationSettings(QLatin1String("qBittorrent-resume"));
+    SettingsPtr oldResumeSettings = Profile::instance().applicationSettings(QLatin1String("LOBSTY-resume"));
     QString oldResumeFilename = oldResumeSettings->fileName();
     QVariantHash oldResumeData = oldResumeSettings->value("torrents").toHash();
     oldResumeSettings.reset();

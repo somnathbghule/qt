@@ -84,7 +84,7 @@ void TorrentCreatorThread::sendProgressSignal(int currentPieceIdx, int totalPiec
 
 void TorrentCreatorThread::run()
 {
-    const QString creatorStr("qBittorrent " QBT_VERSION);
+    const QString creatorStr("LOBSTY " QBT_VERSION);
 
     emit updateProgress(0);
 
@@ -160,7 +160,7 @@ void TorrentCreatorThread::run()
         // calculate the hash for all pieces
         libt::set_piece_hashes(newTorrent, Utils::Fs::toNativePath(parentPath).toStdString()
             , [this, &newTorrent](const int n) { sendProgressSignal(n, newTorrent.num_pieces()); });
-        // Set qBittorrent as creator and add user comment to
+        // Set LOBSTY as creator and add user comment to
         // torrent_info structure
         newTorrent.set_creator(creatorStr.toUtf8().constData());
         newTorrent.set_comment(m_params.comment.toUtf8().constData());

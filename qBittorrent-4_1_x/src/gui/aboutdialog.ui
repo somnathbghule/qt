@@ -12,7 +12,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>About qBittorrent</string>
+   <string>About LOBSTY</string>
   </property>
   <layout class="QVBoxLayout" name="aboutDlgLayout">
    <item>
@@ -23,7 +23,7 @@
      <item>
       <widget class="QLabel" name="labelName">
        <property name="text">
-        <string notr="true">qBittorrent</string>
+        <string notr="true">LOBSTY</string>
        </property>
       </widget>
      </item>
@@ -322,7 +322,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>qBittorrent was built with the following libraries:</string>
+          <string>LOBSTY was built with the following libraries:</string>
          </property>
         </widget>
        </item>
