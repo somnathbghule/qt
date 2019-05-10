@@ -382,5 +382,6 @@
         <file>sphere.png</file>
         <file>sphere2.png</file>
         <file>url.png</file>
+        <file>skin/loToTray.png</file>
     </qresource>
 </RCC>
