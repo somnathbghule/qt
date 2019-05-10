@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
 
     try {
         // Create Application
-        QString appId = QLatin1String("LOBSTY-") + Utils::Misc::getUserIDString();
+        QString appId = QLatin1String("LoTo-") + Utils::Misc::getUserIDString();
         QScopedPointer<Application> app(new Application(appId, argc, argv));
 
 #ifndef DISABLE_GUI
@@ -168,16 +168,16 @@ int main(int argc, char *argv[])
             return EXIT_SUCCESS;
 #endif
 
-        // Check if qBittorrent is already running for this user
+        // Check if LoTo is already running for this user
         if (app->isRunning()) {
 #ifdef DISABLE_GUI
             if (params.shouldDaemonize) {
-                throw CommandLineParameterError(QObject::tr("You cannot use %1: LOBSTY is already running for this user.")
+                throw CommandLineParameterError(QObject::tr("You cannot use %1: LoTo is already running for this user.")
                                      .arg(QLatin1String("-d (or --daemon)")));
             }
             else
 #endif
-            qDebug("LOBSTY is already running for this user.");
+            qDebug("LoTo is already running for this user.");
 
             QThread::msleep(300);
             app->sendParams(params.paramList());
@@ -289,7 +289,7 @@ void sigAbnormalHandler(int signum)
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
     const char msg[] = "\n\n*************************************************************\n"
         "Please file a bug report at http://bug.qbittorrent.org and provide the following information:\n\n"
-        "qBittorrent version: " QBT_VERSION "\n\n"
+        "LoTo version: " QBT_VERSION "\n\n"
         "Caught signal: ";
     reportToUser(msg);
     reportToUser(sigName);
@@ -354,7 +354,7 @@ bool userAgreesWithLegalNotice()
 
 #ifdef DISABLE_GUI
     const QString eula = QString("\n*** %1 ***\n").arg(QObject::tr("Legal Notice"))
-        + QObject::tr("LOBSTY is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + "\n\n"
+        + QObject::tr("LoTo is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + "\n\n"
         + QObject::tr("No further notices will be issued.") + "\n\n"
         + QObject::tr("Press %1 key to accept and continue...").arg("'y'") + '\n';
     printf("%s", qUtf8Printable(eula));
@@ -367,7 +367,7 @@ bool userAgreesWithLegalNotice()
     }
 #else
     QMessageBox msgBox;
-    msgBox.setText(QObject::tr("LOBSTY is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
+    msgBox.setText(QObject::tr("LoTo is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
     msgBox.setWindowTitle(QObject::tr("Legal notice"));
     msgBox.addButton(QObject::tr("Cancel"), QMessageBox::RejectRole);
     QAbstractButton *agreeButton = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);

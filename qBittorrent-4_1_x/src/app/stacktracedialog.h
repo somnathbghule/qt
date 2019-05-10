@@ -52,7 +52,7 @@ public:
         // try to call Qt function as less as possible
         QString htmlStr = QString(
             "<p align=center><b><font size=7 color=red>"
-            "LOBSTY has crashed"
+            "LoTo has crashed"
             "</font></b></p>"
             "<font size=4><p>"
             "Please file a bug report at "
@@ -62,9 +62,9 @@ public:
             "<br/><hr><br/>"
             "<p align=center><font size=4>"
 #if defined(__x86_64__) || defined(_M_X64)
-            "LOBSTY version: " QBT_VERSION " (64-bit)<br/>"
+            "LoTo version: " QBT_VERSION " (64-bit)<br/>"
 #else
-            "LOBSTY version: " QBT_VERSION " (32-bit)<br/>"
+            "LoTo version: " QBT_VERSION " (32-bit)<br/>"
 #endif
             "Libtorrent version: %1<br/>"
             "Qt version: " QT_VERSION_STR "<br/>"

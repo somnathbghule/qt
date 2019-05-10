@@ -51,8 +51,8 @@ enum AdvSettingsCols
 };
 enum AdvSettingsRows
 {
-    // LOBSTY section
-    LOBSTY_HEADER,
+    // LoTo section
+    LoTo_HEADER,
     // network interface
     NETWORK_IFACE,
     //Optional network address
@@ -311,8 +311,8 @@ void AdvancedSettings::loadAdvancedSettings()
     // add section headers
     QFont boldFont;
     boldFont.setBold(true);
-    addRow(LOBSTY_HEADER, tr("LOBSTY Section"), &labelQbtLink);
-    item(LOBSTY_HEADER, PROPERTY)->setFont(boldFont);
+    addRow(LoTo_HEADER, tr("LoTo Section"), &labelQbtLink);
+    item(LoTo_HEADER, PROPERTY)->setFont(boldFont);
     labelQbtLink.setText(QString("<a href=\"%1\">%2</a>")
         .arg("https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#Advanced", tr("Open documentation")));
     labelQbtLink.setOpenExternalLinks(true);

@@ -831,7 +831,7 @@ void PropertiesWidget::askWebSeed()
     if (!ok) return;
     qDebug("Adding %s web seed", qUtf8Printable(urlSeed));
     if (!m_ui->listWebSeeds->findItems(urlSeed, Qt::MatchFixedString).empty()) {
-        QMessageBox::warning(this, "LOBSTY",
+        QMessageBox::warning(this, "LoTo",
                              tr("This URL seed is already in the list."),
                              QMessageBox::Ok);
         return;
@@ -882,7 +882,7 @@ void PropertiesWidget::editWebSeed()
     if (!result) return;
 
     if (!m_ui->listWebSeeds->findItems(newSeed, Qt::MatchFixedString).empty()) {
-        QMessageBox::warning(this, tr("LOBSTY"),
+        QMessageBox::warning(this, tr("LoTo"),
                              tr("This URL seed is already in the list."),
                              QMessageBox::Ok);
         return;

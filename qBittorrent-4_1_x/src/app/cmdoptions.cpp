@@ -537,7 +537,7 @@ QString makeUsage(const QString &prgName)
     stream << PROFILE_OPTION.usage(QObject::tr("dir"))
            << wrapText(QObject::tr("Store configuration files in <dir>")) << '\n';
     stream << CONFIGURATION_OPTION.usage(QObject::tr("name"))
-           << wrapText(QObject::tr("Store configuration files in directories LOBSTY_<name>")) << '\n';
+           << wrapText(QObject::tr("Store configuration files in directories LoTo<name>")) << '\n';
     stream << RELATIVE_FASTRESUME.usage()
            << wrapText(QObject::tr("Hack into libtorrent fastresume files and make file paths relative "
                                          "to the profile directory")) << '\n';

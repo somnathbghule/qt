@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
     QString lobstex = "../lobstex-2.0/src/qt/lobstex-qt";
     QString qbit = "../qBittorrent-4_1_x/src/qbittorrent";
     MyProcess *myProcess [2];
-    myProcess [0] = new MyProcess(tab, tab, qbit, "qbittorrent");
+    myProcess [0] = new MyProcess(tab, tab, qbit, "LoTo");
     myProcess [1] = new MyProcess(tab->tab2Widget(), tab, lobstex, "lobstex-qt");
    
     //Tab stylesheet
