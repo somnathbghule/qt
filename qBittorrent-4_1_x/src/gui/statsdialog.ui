@@ -7,11 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>286</width>
-    <height>401</height>
+    <height>457</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Statistics</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">color: rgb(15, 244, 244);
+background-color: rgb(46, 52, 54);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -224,6 +228,9 @@
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="styleSheet">
+      <string notr="true">border-color: rgb(15, 244, 244);</string>
+     </property>
      <property name="standardButtons">
       <set>QDialogButtonBox::Ok</set>
      </property>

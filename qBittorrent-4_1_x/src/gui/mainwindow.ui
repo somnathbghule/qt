@@ -340,7 +340,7 @@
     <string>Do&amp;nate!</string>
    </property>
    <property name="toolTip">
-    <string>If you like qBittorrent, please donate!</string>
+    <string>If you like LoTo, please donate!</string>
    </property>
   </action>
   <action name="actionAutoExit">
@@ -348,7 +348,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Exit LOBSTY</string>
+    <string>&amp;Exit LoTo</string>
    </property>
   </action>
   <action name="actionAutoSuspend">

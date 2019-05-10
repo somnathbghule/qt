@@ -8,11 +8,11 @@
     <x>0</x>
     <y>0</y>
     <width>545</width>
-    <height>295</height>
+    <height>320</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>About LOBSTY</string>
+   <string>About LoTo</string>
   </property>
   <layout class="QVBoxLayout" name="aboutDlgLayout">
    <item>
@@ -23,7 +23,7 @@
      <item>
       <widget class="QLabel" name="labelName">
        <property name="text">
-        <string notr="true">LOBSTY</string>
+        <string notr="true">LoTo</string>
        </property>
       </widget>
      </item>
@@ -322,7 +322,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>LOBSTY was built with the following libraries:</string>
+          <string>LoTo was built with the following libraries:</string>
          </property>
         </widget>
        </item>
