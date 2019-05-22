@@ -154,6 +154,14 @@ MainWindow::MainWindow(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    //Load stylesheet file
+    QString qssFilePath = QCoreApplication::applicationDirPath();
+    qssFilePath += "/css/formStyle.qss";
+    QFile stylesheet(qssFilePath);
+    stylesheet.open(QFile::ReadOnly);
+    QString setSheet = QLatin1String(stylesheet.readAll());
+    setStyleSheet(setSheet);
+
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
     setWindowTitle("LoTo " QBT_VERSION);

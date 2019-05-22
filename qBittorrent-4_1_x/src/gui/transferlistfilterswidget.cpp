@@ -569,7 +569,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     scroll->setWidgetResizable(true);
     scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    setStyleSheet("QFrame {background: transparent;}");
+    setStyleSheet("QFrame {background: transparent;color: #6FC3DF;}");
     scroll->setStyleSheet("QFrame {border: none;}");
     vLayout->setContentsMargins(0, 0, 0, 0);
     frameLayout->setContentsMargins(0, 2, 0, 0);

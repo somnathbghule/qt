@@ -10,6 +10,9 @@
     <height>452</height>
    </rect>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
     <number>0</number>
@@ -55,6 +58,9 @@
             <width>549</width>
             <height>450</height>
            </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(111, 195, 223);</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
