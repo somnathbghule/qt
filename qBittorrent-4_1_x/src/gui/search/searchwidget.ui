@@ -56,6 +56,9 @@
    </item>
    <item>
     <widget class="QStackedWidget" name="stackedPages">
+     <property name="styleSheet">
+      <string notr="true">background-image: url(:/icons/frame_bg.png);</string>
+     </property>
      <property name="currentIndex">
       <number>1</number>
      </property>
@@ -102,6 +105,9 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
        </property>
        <item>
         <widget class="QTabWidget" name="tabWidget">
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/icons/frame_bg.png);</string>
+         </property>
          <property name="tabsClosable">
           <bool>true</bool>
          </property>

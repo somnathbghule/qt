@@ -59,6 +59,7 @@ StatusBar::StatusBar(QWidget *parent)
     layout->setContentsMargins(0,0,0,0);
 
     container->setLayout(layout);
+
     m_connecStatusLblIcon = new QPushButton(this);
     m_connecStatusLblIcon->setFlat(true);
     m_connecStatusLblIcon->setFocusPolicy(Qt::NoFocus);
@@ -141,7 +142,8 @@ StatusBar::StatusBar(QWidget *parent)
     layout->addWidget(m_upSpeedLbl);
 
     addPermanentWidget(container);
-    setStyleSheet("QWidget {margin: 0;}");
+    setStyleSheet("QWidget {margin: 0;background: #6FC3DF; color: #0C141F;}");
+
     container->adjustSize();
     adjustSize();
     // Is DHT enabled

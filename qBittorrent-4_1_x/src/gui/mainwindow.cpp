@@ -475,6 +475,14 @@ MainWindow::MainWindow(QWidget *parent)
     setupDockClickHandler();
     qt_mac_set_dock_menu(trayIconMenu());
 #endif
+
+    //Load stylesheet file
+    QString qssFilePath = QCoreApplication::applicationDirPath();
+    qssFilePath += "/css/formStyle.qss";
+    QFile stylesheet(qssFilePath);
+    stylesheet.open(QFile::ReadOnly);
+    QString setSheet = QLatin1String(stylesheet.readAll());
+    setStyleSheet(setSheet);
 }
 
 MainWindow::~MainWindow()

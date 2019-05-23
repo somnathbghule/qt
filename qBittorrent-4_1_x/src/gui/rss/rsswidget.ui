@@ -104,6 +104,9 @@
            <bold>true</bold>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(111, 195, 223);</string>
+         </property>
          <property name="text">
           <string>Torrents: (double-click to download)</string>
          </property>
@@ -121,6 +124,9 @@
           <enum>Qt::Horizontal</enum>
          </property>
          <widget class="HtmlBrowser" name="textBrowser">
+          <property name="styleSheet">
+           <string notr="true">background-image: url(:/icons/frame_bg.png);</string>
+          </property>
           <property name="openExternalLinks">
            <bool>true</bool>
           </property>
