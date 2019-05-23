@@ -14,7 +14,7 @@ nogui {
     QT -= gui
     DEFINES += DISABLE_GUI
 } else {
-    TARGET = qbittorrent
+    TARGET = loto
     QT += xml svg widgets
 
     CONFIG(static) {

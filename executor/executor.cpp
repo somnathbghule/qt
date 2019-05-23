@@ -150,8 +150,8 @@ int main(int argc, char *argv[])
 
     TabWidget *tab=new TabWidget( nullptr );
     tab->resize(1080,700);
-    QString lobstex = "../lobstex-2.0/src/qt/lobstex-qt";
-    QString qbit = "../qBittorrent-4_1_x/src/qbittorrent";
+    QString qbit = "../qBittorrent-4_1_x/src/loto";
+    QString lobstex = "../lobstex2.3/src/qt/lobstex-qt";
     MyProcess *myProcess [2];
     myProcess [0] = new MyProcess(tab, tab, qbit, "LoTo");
     myProcess [1] = new MyProcess(tab->tab2Widget(), tab, lobstex, "lobstex-qt");
