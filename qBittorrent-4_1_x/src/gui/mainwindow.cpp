@@ -222,6 +222,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     qDebug("create tabWidget");
     m_tabs = new HidableTabWidget(this);
+    m_tabs->setObjectName("mainTabWidgetObj");
     connect(m_tabs.data(), &QTabWidget::currentChanged, this, &MainWindow::tabChanged);
 
     m_splitter = new QSplitter(Qt::Horizontal, this);

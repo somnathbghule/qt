@@ -26,6 +26,9 @@
       <property name="layoutDirection">
        <enum>Qt::LeftToRight</enum>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(12, 20, 31);</string>
+      </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
@@ -90,7 +93,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>7</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="tabBehaviorPage">
        <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -2887,7 +2890,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>518</width>
+             <width>483</width>
              <height>872</height>
             </rect>
            </property>

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">color: rgb(12, 20, 31);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
@@ -47,6 +47,9 @@
        </property>
        <item>
         <widget class="QScrollArea" name="scrollArea">
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/icons/frame_bg.png);</string>
+         </property>
          <property name="widgetResizable">
           <bool>true</bool>
          </property>
@@ -60,7 +63,7 @@
            </rect>
           </property>
           <property name="styleSheet">
-           <string notr="true">color: rgb(111, 195, 223);</string>
+           <string notr="true"/>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
@@ -80,6 +83,9 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(12, 20, 31);</string>
+                </property>
                 <property name="text">
                  <string>Progress:</string>
                 </property>
@@ -96,6 +102,9 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(12, 20, 31);</string>
+                </property>
                 <property name="textFormat">
                  <enum>Qt::PlainText</enum>
                 </property>
@@ -108,6 +117,9 @@
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(12, 20, 31);</string>
                 </property>
                 <property name="text">
                  <string>Availability:</string>
@@ -125,6 +137,9 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(12, 20, 31);</string>
+                </property>
                 <property name="textFormat">
                  <enum>Qt::PlainText</enum>
                 </property>
@@ -132,6 +147,9 @@
               </item>
               <item row="1" column="1">
                <widget class="QLabel" name="tempAvailabilityBarArea">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(12, 20, 31);</string>
+                </property>
                 <property name="textFormat">
                  <enum>Qt::PlainText</enum>
                 </property>
@@ -139,6 +157,9 @@
               </item>
               <item row="0" column="1">
                <widget class="QLabel" name="tempProgressBarArea">
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(12, 20, 31);</string>
+                </property>
                 <property name="textFormat">
                  <enum>Qt::PlainText</enum>
                 </property>
@@ -156,6 +177,9 @@
            </item>
            <item>
             <widget class="QGroupBox" name="groupTransferBox">
+             <property name="styleSheet">
+              <string notr="true">color: rgb(12, 20, 31);</string>
+             </property>
              <property name="title">
               <string>Transfer</string>
              </property>
@@ -606,6 +630,9 @@
            </item>
            <item>
             <widget class="QGroupBox" name="groupInfosBox">
+             <property name="styleSheet">
+              <string notr="true">color: rgb(12, 20, 31);</string>
+             </property>
              <property name="title">
               <string>Information</string>
              </property>
