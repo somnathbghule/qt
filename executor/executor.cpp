@@ -165,8 +165,8 @@ int main(int argc, char *argv[])
 
     tab->setProcess(myProcess);
     tab->startProcess(0);
-    //tab->showMaximized();
-    tab->show();
+    tab->showMaximized();
+    //tab->show();
 
     //QTimer::singleShot(6000, myProcess [1], SLOT(runProcess()));
     //tab->startProcess(1);
