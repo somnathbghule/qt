@@ -19,7 +19,7 @@ QWidget#PropertiesWidget{
     color: #0C141F;
 }
 
-QWidget#aboutTab{
+QWidget#librariesTab, QWidget#authorTab, QWidget#aboutTab {
     background-color: transparent;
     color: #0C141F;
 }
@@ -65,35 +65,53 @@ background-color: transparent;
 color:#0C141F;
 }
 
-MainWindow .QTabWidget::pane > QWidget {
+QTabWidget#tw_tabs::pane > QWidget {
+    background-color: transparent;
+    color: #6FC3DF;
+}
+
+QTabWidget#tw_tabs QTabBar::tab{
+    background: transparent;
+    border: 2px solid #0C141F;
+    min-width: 10ex;
+    /*border-bottom-color: #0C141F; 
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    min-width: 5ex;
+    min-height: 3ex;
+    padding: 2px;*/
+    color: #0C141F;
+}
+
+QTabWidget::pane > QWidget {
     background-color: #0C141F;
     color: #6FC3DF;
 }
 
-MainWindow .QTabWidget::pane {
+QTabWidget::pane {
     border-top: 2px solid #0C141F;
     position: absolute;
     top: -0.0em;
 }
 
-MainWindow .QTabWidget::tab-bar {
+QTabWidget::tab-bar {
     alignment: left;
 }
 
 /* Style the tab using the tab sub-control. Note that
     it reads QTabBar _not_ QTabWidget */
-MainWindow .QTabBar::tab{
+QTabBar::tab{
     background: #0C141F;
     border: 2px solid #6FC3DF;
     border-bottom-color: #0C141F; /* same as the pane color */
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    min-width: 30ex;
+    min-width: 25ex;
     min-height: 3ex;
     padding: 2px;
 }
 
-MainWindow .QTabBar::tab:selected{
+QTabBar::tab:selected{
     font: bold 14px;
     color :  #6FC3DF;
     background: #DF740C;
@@ -101,13 +119,13 @@ MainWindow .QTabBar::tab:selected{
     border-bottom-color: #0C141F; /* same as pane color */
 }
 
-MainWindow .QTabBar::tab:hover {
+QTabBar::tab:hover {
     font: bold 14px;
     color : #6FC3DF ;
     background: darkGrey;
 }
 
-MainWindow .QTabBar::tab:!selected {
+QTabBar::tab:!selected {
 margin-top: 2px; /* make non-selected tabs look smaller */
 }
 
