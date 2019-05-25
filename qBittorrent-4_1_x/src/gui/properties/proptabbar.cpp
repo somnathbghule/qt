@@ -50,6 +50,7 @@ PropTabBar::PropTabBar(QWidget *parent)
 #endif
             tr("General"), parent);
     mainInfosButton->setShortcut(Qt::ALT + Qt::Key_G);
+    mainInfosButton->setObjectName("mainInfosButtonObj");
     addWidget(mainInfosButton);
     m_btnGroup->addButton(mainInfosButton, MainTab);
     // Trackers tab
@@ -59,6 +60,7 @@ PropTabBar::PropTabBar(QWidget *parent)
 #endif
             tr("Trackers"), parent);
     trackersButton->setShortcut(Qt::ALT + Qt::Key_C);
+    trackersButton->setObjectName("trackersButtonObj");
     addWidget(trackersButton);
     m_btnGroup->addButton(trackersButton, TrackersTab);
     // Peers tab
@@ -68,6 +70,7 @@ PropTabBar::PropTabBar(QWidget *parent)
 #endif
             tr("Peers"), parent);
     peersButton->setShortcut(Qt::ALT + Qt::Key_R);
+    peersButton->setObjectName("peersButtonObj");
     addWidget(peersButton);
     m_btnGroup->addButton(peersButton, PeersTab);
     // URL seeds tab
@@ -77,6 +80,7 @@ PropTabBar::PropTabBar(QWidget *parent)
 #endif
             tr("HTTP Sources"), parent);
     URLSeedsButton->setShortcut(Qt::ALT + Qt::Key_B);
+    URLSeedsButton->setObjectName("URLSeedsButtonObj");
     addWidget(URLSeedsButton);
     m_btnGroup->addButton(URLSeedsButton, URLSeedsTab);
     // Files tab
@@ -86,6 +90,7 @@ PropTabBar::PropTabBar(QWidget *parent)
 #endif
             tr("Content"), parent);
     filesButton->setShortcut(Qt::ALT + Qt::Key_Z);
+    filesButton->setObjectName("filesButtonObj");
     addWidget(filesButton);
     m_btnGroup->addButton(filesButton, FilesTab);
     // Spacer
@@ -97,6 +102,7 @@ PropTabBar::PropTabBar(QWidget *parent)
 #endif
             tr("Speed"), parent);
     speedButton->setShortcut(Qt::ALT + Qt::Key_D);
+    speedButton->setObjectName("speedButtonObj");
     addWidget(speedButton);
     m_btnGroup->addButton(speedButton, SpeedTab);
     // SIGNAL/SLOT

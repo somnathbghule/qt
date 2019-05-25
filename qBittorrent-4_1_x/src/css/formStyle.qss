@@ -5,25 +5,90 @@
 /* Icons       - Orange Tron Legacy - #DF740C */
 /* Color Codes */
 /*********************************************************************************/
-
 .QWidget {
    color: #6FC3DF;
    background-color: #0C141F;
 }
+QWidget#scrollAreaWidgetContents{
+   color: #6FC3DF;
+   background-color: #0C141F;
+}
+
+QWidget#PropertiesWidget{
+    background-color: transparent;
+    color: #0C141F;
+}
+
+QWidget#librariesTab, QWidget#authorTab, QWidget#aboutTab {
+    background-color: transparent;
+    color: #0C141F;
+}
+QWidget#scrollAreaWidgetContents, QWidget#scrollAreaWidgetContents_2, QWidget#scrollAreaWidgetContents_3, QWidget#scrollAreaWidgetContents_9, QWidget#scrollAreaWidgetContents_4, QWidget#scrollAreaWidgetContents_5, QWidget#scrollAreaWidgetContents_7{
+    background-color: transparent;
+    color: #0C141F;
+}
 
 QToolBar {
-    background: #6FC3DF;
-    color: #0C141F;
-    spacing: 1px; /* spacing between items in the tool bar */
-}
-QToolButton:hover {
-	background-color:#DF740C;
-} 
-QToolButton:!hover {
- 	background-color: #6FC3DF;
+background-color: #6FC3DF;
+border:0px;
+margin:0;
 }
 
-QTabWidget::pane { /* The tab widget frame */
+QToolBar > QToolButton {
+background-color: #6FC3DF;
+selection-background-color: transparent;
+color:#0C141F;
+height: 35px;
+}
+
+QToolBar > QToolButton:checked {
+background-color: transparent;
+color:#fff;
+}
+
+QToolBar > QToolButton:hover {
+background-color: #DF740C;
+selection-background-color:transparent;
+color:#0C141F;
+height: 50px;
+}
+
+
+
+QToolBar > QToolButton#ToolbarSpacer:hover:!selected {
+background-color: transparent;
+color:#0C141F;
+}
+
+QToolBar > QToolButton:pressed {
+background-color: transparent;
+color:#0C141F;
+}
+
+QTabWidget#tw_tabs::pane > QWidget {
+    background-color: transparent;
+    color: #6FC3DF;
+}
+
+QTabWidget#tw_tabs QTabBar::tab{
+    background: transparent;
+    border: 2px solid #0C141F;
+    min-width: 10ex;
+    /*border-bottom-color: #0C141F; 
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    min-width: 5ex;
+    min-height: 3ex;
+    padding: 2px;*/
+    color: #0C141F;
+}
+
+QTabWidget::pane > QWidget {
+    background-color: #0C141F;
+    color: #6FC3DF;
+}
+
+QTabWidget::pane {
     border-top: 2px solid #0C141F;
     position: absolute;
     top: -0.0em;
@@ -35,13 +100,13 @@ QTabWidget::tab-bar {
 
 /* Style the tab using the tab sub-control. Note that
     it reads QTabBar _not_ QTabWidget */
-QTabBar::tab {
+QTabBar::tab{
     background: #0C141F;
     border: 2px solid #6FC3DF;
     border-bottom-color: #0C141F; /* same as the pane color */
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    min-width: 40ex;
+    min-width: 25ex;
     min-height: 3ex;
     padding: 2px;
 }
@@ -64,18 +129,13 @@ QTabBar::tab:!selected {
 margin-top: 2px; /* make non-selected tabs look smaller */
 }
 
-QTabWidget::pane > QWidget {
-    background-color: #0C141F;
-    color: #6FC3DF;
-}
-
 QTextEdit, QListView{
     color: #6FC3DF;
 }
 
 QCheckBox {
     border: none;
-    color: #6FC3DF;
+    color: #0C141F;
 }
 
 QTreeWidget { /* Right side */
@@ -93,7 +153,8 @@ background-repeat: repeat-y;
 QListWidget {
 background-image: url(':/icons/frame_bg.png');
 }
-QTreeView { /* Right side */
+
+QTreeView{
 min-width:400px;
 background-color:rgb(255,255,255);
 border-radius: 6px;
@@ -105,12 +166,12 @@ height: 100%;
 background-repeat: repeat-y;
 }
 
-QHeaderView::section { 
+.QHeaderView::section { 
 background-color: #6FC3DF;
 color: #0C141F;
 }
 
-QPushButton { /* Global Button Style */
+.QPushButton { /* Global Button Style */
 background-color: rgb(35,36,52);
 border-color:#303030;
 border-radius: 5px;
@@ -124,7 +185,7 @@ height: 25px;
 margin: 2px;
 }
 
-QPushButton:hover {
+.QPushButton:hover {
 background-color:rgba(35,36,52,0.6);
 border-color:#43BDC4;
 color:#fff;
@@ -135,12 +196,20 @@ QPushButton:focus {
 /* outline:none; */
 }
 
-QPushButton:pressed {
+.QPushButton:pressed {
 background-color: #43BDC4;
 border-color:#43BDC4;
 color:#fff;
 }
 
+QPushButton#mainInfosButtonObj, QPushButton#trackersButtonObj, QPushButton#peersButtonObj, QPushButton#URLSeedsButtonObj, QPushButton#filesButtonObj, QPushButton#speedButtonObj, QPushButton#selectAllButton, QPushButton#selectNoneButton{
+background-color: #6FC3DF;
+color: #0C141F;
+}
+QPushButton#mainInfosButtonObj:hover, QPushButton#trackersButtonObj:hover, QPushButton#peersButtonObj:hover, QPushButton#URLSeedsButtonObj:hover, QPushButton#filesButtonObj:hover, QPushButton#speedButtonObj:hover,QPushButton#selectAllButton:hover,QPushButton#selectNoneButton:hover {
+background-color:#DF740C;
+border-color:#43BDC4;
+}
 QScrollBar { /* Scroll Bar */
 }
 
@@ -280,4 +349,107 @@ margin-top: -6px;
 margin-bottom: -6px;
 border-radius: 8px;
 }
+
+QTextEdit {
+background-color:#fff;
+color:#333;
+}
+
+QLineEdit, QTextEdit { /* Text Entry Fields */
+font-size:12px;
+min-height:25px;
+outline:0;
+padding:3px;
+border:0px;
+color:#333;
+background-color:#f2f2f2;
+}
+
+
+QLineEdit:!focus {
+color:#232434;
+background-color:#e7e7e7;
+}
+
+QTextEdit:!focus {
+color:#232434;
+background-color:#e7e7e7;
+}
+
+/* .QValidatedLineEdit:checked, .QLineEdit:checked */
+
+QLineEdit:disabled, QTextEdit:disabled {
+color: #232434;
+background-color:#f2f2f2;
+}
+
+QComboBox { /* Dropdown Menus */
+border:1px solid #232434;
+padding: 3px 5px 3px 5px;
+background:#fcfcfc;
+min-height:25px;
+color:#818181;
+}
+
+QComboBox:checked {
+background:#f2f2f2;
+}
+
+QComboBox:editable {
+background:#000;
+color:#616161;
+border:0px solid transparent;
+}
+
+QComboBox::drop-down {
+width:25px;
+border:0px;
+}
+
+QComboBox::down-arrow {
+border-image: url(':/icons/downArrow_small.png') 0 0 0 0 stretch stretch;
+}
+
+QComboBox QListView {
+background:#fff;
+border:0px;
+padding-right:1px;
+padding-left:1px;
+color:#818181;
+}
+
+QComboBox QAbstractItemView::item {
+margin:4px;
+}
+
+QComboBox::item {
+color:#818181;
+}
+
+QComboBox::item:alternate {
+background:#fff;
+}
+
+QComboBox::item:selected {
+border:0px solid transparent;
+background:#f2f2f2;
+}
+
+QComboBox::indicator {
+background-color:transparent;
+selection-background-color:transparent;
+color:transparent;
+selection-color:transparent;
+}
+
+/*QDialog {
+border-radius: 6px;
+background-color: transparent;
+background-image: url(':/icons/frame_bg.png');
+background-position: center;
+width: 100%;
+height: 100%;
+background-repeat: repeat-y;
+}*/
+
 

@@ -54,8 +54,8 @@ public:
         labelName->setText("<b><h2>LoTo " QBT_VERSION " (32-bit)</h2></b>");
 #endif
 
-        //logo->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/skin/qbittorrent-tray.svg", this, 32));
-        logo->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/loToTray.png", this,32));
+        logo->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/skin/qbittorrent-tray.svg", this, 32));
+        //logo->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/loToTray.png", this,32));
 
         // About
         QString aboutText = QString(
@@ -75,7 +75,7 @@ public:
                 , tr("Bug Tracker:"));
         labelAbout->setText(aboutText);
 
-        labelMascot->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/mascot.png", this));
+        //labelMascot->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/mascot.png", this));
 
         // Thanks
         QFile thanksfile(":/thanks.html");

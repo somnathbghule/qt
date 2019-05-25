@@ -584,6 +584,8 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     QCheckBox *statusLabel = new QCheckBox(tr("Status"), this);
     statusLabel->setChecked(pref->getStatusFilterState());
     statusLabel->setFont(font);
+    statusLabel->setStyleSheet("QCheckBox {border: none;color: #6FC3DF;}");
+
     frameLayout->addWidget(statusLabel);
 
     StatusFilterWidget *statusFilters = new StatusFilterWidget(this, transferList);
@@ -592,6 +594,8 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     QCheckBox *categoryLabel = new QCheckBox(tr("Categories"), this);
     categoryLabel->setChecked(pref->getCategoryFilterState());
     categoryLabel->setFont(font);
+    categoryLabel->setStyleSheet("QCheckBox {border: none;color: #6FC3DF;}");
+
     connect(categoryLabel, &QCheckBox::toggled, this
             , &TransferListFiltersWidget::onCategoryFilterStateChanged);
     frameLayout->addWidget(categoryLabel);
@@ -611,6 +615,8 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     QCheckBox *tagsLabel = new QCheckBox(tr("Tags"), this);
     tagsLabel->setChecked(pref->getTagFilterState());
     tagsLabel->setFont(font);
+    tagsLabel->setStyleSheet("QCheckBox {border: none;color: #6FC3DF;}");
+
     connect(tagsLabel, &QCheckBox::toggled, this, &TransferListFiltersWidget::onTagFilterStateChanged);
     frameLayout->addWidget(tagsLabel);
 
@@ -629,6 +635,8 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     QCheckBox *trackerLabel = new QCheckBox(tr("Trackers"), this);
     trackerLabel->setChecked(pref->getTrackerFilterState());
     trackerLabel->setFont(font);
+    trackerLabel->setStyleSheet("QCheckBox {border: none;color: #6FC3DF;}");
+
     frameLayout->addWidget(trackerLabel);
 
     m_trackerFilters = new TrackerFiltersList(this, transferList, downloadFavicon);

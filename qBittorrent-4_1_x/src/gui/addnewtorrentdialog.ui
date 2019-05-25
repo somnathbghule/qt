@@ -6,9 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>414</width>
-    <height>630</height>
+    <width>533</width>
+    <height>712</height>
    </rect>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(243, 243, 243);</string>
   </property>
   <layout class="QVBoxLayout" name="AddNewTorrentDialogLayout">
    <item>
@@ -288,8 +291,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>321</width>
-           <height>69</height>
+           <width>414</width>
+           <height>68</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
@@ -396,7 +399,7 @@
   <customwidget>
    <class>TorrentContentTreeView</class>
    <extends>QTreeView</extends>
-   <header>torrentcontenttreeview.h</header>
+   <header location="global">torrentcontenttreeview.h</header>
   </customwidget>
   <customwidget>
    <class>FileSystemPathComboEdit</class>
