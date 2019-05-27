@@ -32,6 +32,7 @@ RaisedMessageBox::RaisedMessageBox(QMessageBox::Icon icon, const QString &title,
                                    QMessageBox::StandardButtons buttons, QWidget *parent, Qt::WindowFlags f)
   : QMessageBox(icon, title, text, buttons, parent, f)
 {
+    setObjectName("RaisedMessageBoxObj");
 }
 
 QMessageBox::StandardButton RaisedMessageBox::impl(const QMessageBox::Icon &icon, QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton)

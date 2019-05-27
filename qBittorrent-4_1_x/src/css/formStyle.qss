@@ -210,6 +210,39 @@ QPushButton#mainInfosButtonObj:hover, QPushButton#trackersButtonObj:hover, QPush
 background-color:#DF740C;
 border-color:#43BDC4;
 }
+
+
+QPushButton#RaisedMessageBoxObj {
+background-color: rgb(35,36,52);
+border-color:#303030;
+border-radius: 5px;
+color:#ffffff;
+font-size:12px;
+padding-left:10px;
+padding-right:10px;
+padding-top:1px;
+padding-bottom:1px;
+height: 25px;
+margin: 2px;
+}
+
+QPushButton#RaisedMessageBoxObj:hover {
+background-color:rgba(35,36,52,0.6);
+border-color:#43BDC4;
+color:#fff;
+}
+
+QPushButton#RaisedMessageBoxObj:focus {
+ border:none; 
+ outline:none; 
+}
+
+QPushButton#RaisedMessageBoxObj:pressed {
+background-color: #43BDC4;
+border-color:#43BDC4;
+color:#fff;
+}
+
 QScrollBar { /* Scroll Bar */
 }
 

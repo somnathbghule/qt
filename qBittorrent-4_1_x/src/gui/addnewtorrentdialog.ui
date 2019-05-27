@@ -366,6 +366,12 @@
      </item>
      <item>
       <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(12, 20, 31);
+outline:none;
+color: rgb(255, 255, 255);
+buttonBox::hover:rgb(111, 195, 223)</string>
+       </property>
        <property name="standardButtons">
         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
        </property>
