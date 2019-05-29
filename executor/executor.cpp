@@ -25,14 +25,14 @@ MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processPath, Q
 }
 
 void MyProcess::myProcessStarted(){
-    qDebug() << Q_FUNC_INFO;
+    //qDebug() << Q_FUNC_INFO;
 }
 void MyProcess::myReadyRead() {
-    qDebug() << Q_FUNC_INFO;
+    //qDebug() << Q_FUNC_INFO;
 }
 //using namespace std;
 void MyProcess::myReadyReadStandardOutput() {
-    qDebug() << Q_FUNC_INFO;
+    //qDebug() << Q_FUNC_INFO;
     int winId = 0; 
     QByteArray out = this->readAllStandardOutput();
     QString str(out.toStdString().c_str());
@@ -65,7 +65,6 @@ TabWidget::TabWidget(QWidget *parent ):QTabWidget(parent){
 }
 
 void TabWidget::tabclicked(int index ){
-	qDebug()<<"tabbar clicled"<<index;
 	if( index == 1 && !isProcessStarted ){
 		isProcessStarted = true;
         startProcess( 1 );
@@ -83,9 +82,8 @@ void TabWidget::setProcess(MyProcess **process){
 }
 void TabWidget::createNewTab(int winId){
     //qDebug() << Q_FUNC_INFO;
-    qDebug() << winId;
+   // qDebug() << winId;
     //showMaximized();
-    qDebug()<<"current thread"<<QThread::currentThreadId() ;
     if ( globWinIds.size() == 1 ) {
         QWindow *window = QWindow::fromWinId( winId );
         qbitLayout_->addWidget(QWidget::createWindowContainer(window));
@@ -154,7 +152,7 @@ int main(int argc, char *argv[])
     QString lobstex = "../lobstex2.3/src/qt/lobstex-qt";
     MyProcess *myProcess [2];
     myProcess [0] = new MyProcess(tab, tab, qbit, "LoTo");
-    myProcess [1] = new MyProcess(tab->tab2Widget(), tab, lobstex, "lobstex-qt");
+    myProcess [1] = new MyProcess(tab->tab2Widget(), tab, lobstex, "LOBSTEX");
    
     //Tab stylesheet
     QFile stylesheet("formStyle.qss");
@@ -166,10 +164,7 @@ int main(int argc, char *argv[])
     tab->setProcess(myProcess);
     tab->startProcess(0);
     tab->showMaximized();
-    //tab->show();
 
-    //QTimer::singleShot(6000, myProcess [1], SLOT(runProcess()));
-    //tab->startProcess(1);
     return a.exec();
 }
 
