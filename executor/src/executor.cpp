@@ -7,7 +7,7 @@
 #include <QDataStream>
 #include <QPalette>
 
-MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processPath, QString name):QProcess(parent)
+MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processPath, QString name, QIcon icon):QProcess(parent)
 {
 	
     connect(this,SIGNAL(readyRead()),
@@ -22,6 +22,7 @@ MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processPath, Q
     winId_ = 0;
     widget_ = widget;
     processPath_ = processPath;
+    icon_ = icon;
 }
 
 void MyProcess::myProcessStarted(){
@@ -78,7 +79,11 @@ void TabWidget::setProcess(MyProcess **process){
     process_[0] = process[0];
     process_[1] = process[1];
     setTabText(0, process_[0]->name());
+    setTabIcon(0, process_[0]->icon());
+
     setTabText(1, process_[1]->name());
+    setTabIcon(1, process_[1]->icon());
+    setIconSize(QSize(20,20));
 }
 void TabWidget::createNewTab(int winId){
     //qDebug() << Q_FUNC_INFO;
@@ -148,14 +153,14 @@ int main(int argc, char *argv[])
 
     TabWidget *tab=new TabWidget( nullptr );
     tab->resize(1080,700);
-    QString qbit = "../qBittorrent-4_1_x/src/loto";
-    QString lobstex = "../lobstex2.3/src/qt/lobstex-qt";
+    QString qbit = "./loto";
+    QString lobstex = "./lobstex-qt";
     MyProcess *myProcess [2];
-    myProcess [0] = new MyProcess(tab, tab, qbit, "LoTo");
-    myProcess [1] = new MyProcess(tab->tab2Widget(), tab, lobstex, "LOBSTEX");
+    myProcess [0] = new MyProcess(tab, tab, qbit, "LoTo",QIcon(":/images/Loto.png"));
+    myProcess [1] = new MyProcess(tab->tab2Widget(), tab, lobstex, "LOBSTEX",QIcon(":/images/Lobstex.png"));
    
     //Tab stylesheet
-    QFile stylesheet("formStyle.qss");
+    QFile stylesheet(":/formStyle.qss");
     stylesheet.open(QFile::ReadOnly);
     QString setSheet = QLatin1String(stylesheet.readAll());
     tab->setStyleSheet(setSheet);
