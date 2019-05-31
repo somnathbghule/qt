@@ -238,20 +238,13 @@ void SearchWidget::updateButtons()
 {
     if (m_currentSearchTab && (m_currentSearchTab->visibleResultsCount() > 0)) {
         m_ui->downloadButton->setEnabled(true);
-        m_ui->downloadButton->setStyleSheet("QPushButton{background-color: #6FC3DF;color: #0C141F;}" ":hover {background-color:#DF740C;}");
         m_ui->goToDescBtn->setEnabled(true);
-        m_ui->goToDescBtn->setStyleSheet("QPushButton{background-color: #6FC3DF;color: #0C141F;}" ":hover {background-color:#DF740C;}");
         m_ui->copyURLBtn->setEnabled(true);
-        m_ui->copyURLBtn->setStyleSheet("QPushButton{background-color: #6FC3DF;color: #0C141F;}" ":hover {background-color:#DF740C;}");
     }
     else {
         m_ui->downloadButton->setEnabled(false);
-        m_ui->downloadButton->setStyleSheet("QPushButton{background-color: #D3D3D3;color: #A9A9A9;}");
         m_ui->goToDescBtn->setEnabled(false);
-        m_ui->goToDescBtn->setStyleSheet("QPushButton{background-color: #D3D3D3;color: #A9A9A9;}");
         m_ui->copyURLBtn->setEnabled(false);
-        m_ui->copyURLBtn->setStyleSheet("QPushButton{background-color: #D3D3D3;color: #A9A9A9;");
-
     }
 }
 

@@ -57,10 +57,8 @@
     <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="actionDocumentation"/>
     <addaction name="actionCheckForUpdates"/>
     <addaction name="separator"/>
-    <addaction name="actionDonateMoney"/>
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
@@ -231,11 +229,6 @@
     <string>Set Download Limit...</string>
    </property>
   </action>
-  <action name="actionDocumentation">
-   <property name="text">
-    <string>&amp;Documentation</string>
-   </property>
-  </action>
   <action name="actionSetGlobalDownloadLimit">
    <property name="text">
     <string>Set Global Download Limit...</string>
@@ -333,14 +326,6 @@
    </property>
    <property name="text">
     <string>Search &amp;Engine</string>
-   </property>
-  </action>
-  <action name="actionDonateMoney">
-   <property name="text">
-    <string>Do&amp;nate!</string>
-   </property>
-   <property name="toolTip">
-    <string>If you like LoTo, please donate!</string>
    </property>
   </action>
   <action name="actionAutoExit">
