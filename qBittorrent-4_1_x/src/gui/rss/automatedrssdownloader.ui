@@ -55,6 +55,9 @@
              <bold>true</bold>
             </font>
            </property>
+           <property name="styleSheet">
+            <string notr="true">color: rgb(111, 195, 223);</string>
+           </property>
            <property name="text">
             <string>Download Rules</string>
            </property>
@@ -95,6 +98,10 @@
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
         <widget class="QGroupBox" name="ruleDefBox">
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/icons/frame_bg.png);
+color: rgb(0, 0, 0);</string>
+         </property>
          <property name="title">
           <string>Rule Definition</string>
          </property>
@@ -183,7 +190,7 @@
           <item>
            <widget class="QCheckBox" name="checkSmart">
             <property name="toolTip">
-            <string>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+             <string>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</string>
             </property>
             <property name="text">
@@ -370,6 +377,9 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
            <weight>75</weight>
            <bold>true</bold>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(111, 195, 223);</string>
          </property>
          <property name="text">
           <string>Matching RSS Articles</string>

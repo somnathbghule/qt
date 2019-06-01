@@ -63,7 +63,7 @@ public:
             "%1\n\n"
             "%2\n\n"
             "<table>"
-            "<tr><td>%3</td><td><a href=\"https://www.qbittorrent.org\">https://www.qbittorrent.org</a></td></tr>"
+            "<tr><td>%3</td><td><a href=\"https://www.lobstex.com\">https://www.lobstex.com</a></td></tr>"
             "</table>"
             "</p>")
             .arg(tr("An advanced LoTo client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.")
