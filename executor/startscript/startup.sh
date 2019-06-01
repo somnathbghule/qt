@@ -10,4 +10,4 @@ export PATH=$QT_DIR/bin:$PATH
 export LD_LIBRARY_PATH=$QT_DIR/lib:$LD_LIBRARY_PATH
 
 #Executable
-./Lobsty
+./LoTo

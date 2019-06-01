@@ -3,7 +3,7 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = Lobsty
+TARGET = LoTo
 INCLUDEPATH += .
 
 QT += core gui
