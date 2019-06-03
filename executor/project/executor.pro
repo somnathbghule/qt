@@ -21,3 +21,7 @@ SOURCES += ../src/executor.cpp
 RESOURCES += \
     ../resources/resources.qrc
 
+unix{
+target.path = /usr/local/bin
+INSTALLS += target
+}
