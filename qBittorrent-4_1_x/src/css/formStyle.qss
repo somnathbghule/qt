@@ -65,6 +65,34 @@ background-color: transparent;
 color:#0C141F;
 }
 
+QMenuBar {
+background-color:#fff;
+font-size: 13px;
+}
+
+QMenuBar::item {
+background-color:#fff;
+color:#333;
+}
+
+QMenuBar::item:selected {
+background-color:#7eb2d3;
+}
+
+QMenu {
+background-color:#f8f6f6;
+font-size: 13px;
+}
+
+QMenu::item {
+color:#333;
+}
+
+QMenu::item:selected {
+background-color:#7eb2d3;
+color:#333;
+}
+
 QTabWidget#tw_tabs::pane > QWidget {
     background-color: transparent;
     color: #6FC3DF;

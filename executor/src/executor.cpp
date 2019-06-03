@@ -6,7 +6,8 @@
 #include <executor.h>
 #include <QDataStream>
 #include <QPalette>
-
+#include <QMainWindow>
+#include <QScreen>
 MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processPath, QString name, QIcon icon):QProcess(parent)
 {
 	
@@ -79,11 +80,11 @@ void TabWidget::setProcess(MyProcess **process){
     process_[0] = process[0];
     process_[1] = process[1];
     setTabText(0, process_[0]->name());
-    //setTabIcon(0, process_[0]->icon());
+    setTabIcon(0, process_[0]->icon());
 
     setTabText(1, process_[1]->name());
     setTabIcon(1, process_[1]->icon());
-   // setIconSize(QSize(20,20));
+    setIconSize(QSize(20,20));
 }
 void TabWidget::createNewTab(int winId){
     //qDebug() << Q_FUNC_INFO;
@@ -151,24 +152,41 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    TabWidget *tab=new TabWidget( nullptr );
-    tab->resize(1080,700);
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    int height = screenGeometry.height();
+    int width = screenGeometry.width();
+
+    QMainWindow *window = new QMainWindow();
+
+    window->setWindowTitle(QString::fromUtf8("LoTo"));
+    window->resize(width,height);
+    window->setWindowIcon(QIcon(":/images/Loto.png"));
+    QWidget *centralWidget = new QWidget(window);
+
+    //Tab stylesheet
+    QFile stylesheet(":/formStyle.qss");
+    stylesheet.open(QFile::ReadOnly);
+    QString setSheet = QLatin1String(stylesheet.readAll());
+    window->setStyleSheet(setSheet);
+    //end
+
+    TabWidget *tab=new TabWidget( centralWidget );
+    tab->resize(window->width() - 70,window->height() - 20);
     QString qbit = "/usr/local/bin/loto";
     QString lobstex = "/usr/local/bin/lobstex-qt";
     MyProcess *myProcess [2];
     myProcess [0] = new MyProcess(tab, tab, qbit, "LoTo",QIcon(":/images/Loto.png"));
     myProcess [1] = new MyProcess(tab->tab2Widget(), tab, lobstex, "LOBSTEX",QIcon(":/images/Lobstex.png"));
-   
-    //Tab stylesheet
-    QFile stylesheet(":/formStyle.qss");
-    stylesheet.open(QFile::ReadOnly);
-    QString setSheet = QLatin1String(stylesheet.readAll());
-    tab->setStyleSheet(setSheet);
-    //end
+
+    qDebug() << "**********************window************" << window->width() << window->height();
 
     tab->setProcess(myProcess);
     tab->startProcess(0);
     tab->showMaximized();
+
+    window->setCentralWidget(centralWidget);
+    window->showMaximized();
 
     return a.exec();
 }

@@ -1,11 +1,16 @@
 .QWidget {
-   background-color: #0C141F;
+   background-color: black;
 }
 
 QTabWidget::pane { /* The tab widget frame */
-    border-top: 2px solid #0C141F;
+    border-top: 2px solid black;
     position: absolute;
     top: -0.0em;
+}
+
+QTabWidget#tw_tabs::pane > QWidget {
+    background-color: transparent;
+    color: #6FC3DF;
 }
 
 QTabWidget::tab-bar {
@@ -20,7 +25,7 @@ QTabBar::tab {
     border-bottom-color: #0C141F; /* same as the pane color */
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    width: 77ex;
+    width: 25ex;
     min-height: 3ex;
     padding: 2px;
 }
@@ -28,21 +33,20 @@ QTabBar::tab {
 QTabBar::tab:selected{
     font: bold 14px;
     color : cyan ;
-    background: black;
+    background-color: black;
     border-color: #9B9B9B;
     border-bottom-color: #0C141F; /* same as pane color */
 }
 
 QTabBar::tab:hover {
     font: bold 14px;
-    color : black ;
-    background: darkGrey
+    color : white ;
+    background-color: lightGrey;
 }
 
 QTabBar::tab:!selected {
 margin-top: 3px; /* make non-selected tabs look smaller */
 border-top-left-radius: 4px;
 border-top-right-radius: 4px;
-color: black;
-background: transparent;
+color: darkGrey;
 }
