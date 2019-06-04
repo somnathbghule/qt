@@ -1,5 +1,6 @@
 .QWidget {
    background-color: black;
+   background-image: url(':/images/bg.jpg');
 }
 
 QTabWidget::pane { /* The tab widget frame */
@@ -25,8 +26,8 @@ QTabBar::tab {
     border-bottom-color: #0C141F; /* same as the pane color */
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    width: 25ex;
-    min-height: 3ex;
+    width: 200px;
+    min-height: 10px;
     padding: 2px;
 }
 

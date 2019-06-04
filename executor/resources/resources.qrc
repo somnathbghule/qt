@@ -3,6 +3,6 @@
         <file>images/Lobstex.png</file>
         <file>images/Loto.png</file>
         <file>formStyle.qss</file>
-        <file>images/Lobstex_bg.png</file>
+        <file>images/bg.jpg</file>
     </qresource>
 </RCC>

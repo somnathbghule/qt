@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
     //end
 
     TabWidget *tab=new TabWidget( centralWidget );
-    tab->resize(window->width() - 70,window->height() - 20);
+    tab->resize(window->width(),window->height());
     QString qbit = "/usr/local/bin/loto";
     QString lobstex = "/usr/local/bin/lobstex-qt";
     MyProcess *myProcess [2];
