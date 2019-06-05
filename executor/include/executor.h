@@ -9,7 +9,7 @@
 #include <QVector>
 #include <QHBoxLayout>
 #include <QThread>
-
+#include <QMainWindow>
 
 
 class TabWidget;
@@ -55,6 +55,7 @@ public slots:
 	void tabclicked(int);
     void createNewTab(int);
     void startProcess();
+    void stopProcess();
 signals:
     void tabAdded();
 private:
@@ -65,5 +66,16 @@ private:
     QWidget *qbitWidget_;
 };
 
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent=0 );
+protected:
+    void closeEvent(QCloseEvent* event);
+signals:
+    void exitApplication();
+
+};
 
 #endif 

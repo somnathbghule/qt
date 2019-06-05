@@ -6,7 +6,6 @@
 #include <executor.h>
 #include <QDataStream>
 #include <QPalette>
-#include <QMainWindow>
 #include <QScreen>
 MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processPath, QString name, QIcon icon):QProcess(parent)
 {
@@ -126,16 +125,23 @@ bool TabWidget :: event(QEvent *e) {
     //qDebug()<<e;
     return QWidget::event(e);
 }
-void TabWidget::closeEvent (QCloseEvent *event){
+/*void TabWidget::closeEvent (QCloseEvent *event){
     //qDebug() << Q_FUNC_INFO;
     //qDebug()<<"globWinIds"<<globWinIds;
     process_[0]->close();
     process_[1]->close();
-}
+}*/
 
 void TabWidget::startProcess(int index){
     process_[index]->start(process_[index]->processPath());
 }
+void TabWidget::stopProcess()
+{
+   // qDebug() << Q_FUNC_INFO;
+    process_[0]->close();
+    process_[1]->close();
+}
+
 /*
 void gui_wrapper::paintEvent(QPaintEvent* aEvent)
 {
@@ -146,6 +152,13 @@ void gui_wrapper::paintEvent(QPaintEvent* aEvent)
 }
 */
 
+MainWindow::MainWindow(QWidget *parent ){
+
+}
+void MainWindow::closeEvent (QCloseEvent *event){
+    //qDebug() << Q_FUNC_INFO;
+    emit exitApplication();
+}
 #include <QTimer>
 
 int main(int argc, char *argv[])
@@ -157,7 +170,7 @@ int main(int argc, char *argv[])
     int height = screenGeometry.height();
     int width = screenGeometry.width();
 
-    QMainWindow *window = new QMainWindow();
+    MainWindow *window = new MainWindow();
 
     window->setWindowTitle(QString::fromUtf8("LoTo"));
     window->resize(width,height);
@@ -179,7 +192,7 @@ int main(int argc, char *argv[])
     myProcess [0] = new MyProcess(tab, tab, qbit, "LoTo",QIcon(":/images/Loto.png"));
     myProcess [1] = new MyProcess(tab->tab2Widget(), tab, lobstex, "LOBSTEX",QIcon(":/images/Lobstex.png"));
 
-    qDebug() << "**********************window************" << window->width() << window->height();
+   // qDebug() << "**********************window************" << window->width() << window->height();
 
     tab->setProcess(myProcess);
     tab->startProcess(0);
@@ -188,6 +201,7 @@ int main(int argc, char *argv[])
     window->setCentralWidget(centralWidget);
     window->showMaximized();
 
+    QObject::connect(window, &MainWindow::exitApplication, tab, &TabWidget::stopProcess);
     return a.exec();
 }
 
