@@ -44,7 +44,7 @@ class TabWidget : public QTabWidget{
     Q_OBJECT
 public:
     TabWidget(QWidget *parent );
-    void closeEvent( QCloseEvent *event );
+    //void closeEvent( QCloseEvent *event );
     void setProcess(MyProcess **process);
     MyProcess *process_[2];
     //void resizeEvent( QResizeEvent *resize );
