@@ -1,0 +1,53 @@
+.QWidget {
+   background-color: black;
+   background-image: url(':/images/bg.jpg');
+}
+
+QTabWidget::pane { /* The tab widget frame */
+    border-top: 2px solid black;
+    position: absolute;
+    top: -0.0em;
+}
+
+QTabWidget#tw_tabs::pane > QWidget {
+    background-color: transparent;
+    color: #6FC3DF;
+}
+
+QTabWidget::tab-bar {
+    alignment: center;
+}
+
+/* Style the tab using the tab sub-control. Note that
+    it reads QTabBar _not_ QTabWidget */
+QTabBar::tab {
+    background: black;
+    border: 2px solid #C4C4C3;
+    border-bottom-color: #0C141F; /* same as the pane color */
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    width: 200px;
+    min-height: 10px;
+    padding: 2px;
+}
+
+QTabBar::tab:selected{
+    font: bold 14px;
+    color : cyan ;
+    background-color: black;
+    border-color: #9B9B9B;
+    border-bottom-color: #0C141F; /* same as pane color */
+}
+
+QTabBar::tab:hover {
+    font: bold 14px;
+    color : white ;
+    background-color: lightGrey;
+}
+
+QTabBar::tab:!selected {
+margin-top: 3px; /* make non-selected tabs look smaller */
+border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+color: darkGrey;
+}

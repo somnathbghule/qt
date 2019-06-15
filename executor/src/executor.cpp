@@ -6,8 +6,8 @@
 #include <executor.h>
 #include <QDataStream>
 #include <QPalette>
-
-MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processPath, QString name):QProcess(parent)
+#include <QScreen>
+MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processPath, QString name, QIcon icon):QProcess(parent)
 {
 	
     connect(this,SIGNAL(readyRead()),
@@ -22,6 +22,7 @@ MyProcess::MyProcess(QObject *parent, TabWidget *widget, QString &processPath, Q
     winId_ = 0;
     widget_ = widget;
     processPath_ = processPath;
+    icon_ = icon;
 }
 
 void MyProcess::myProcessStarted(){
@@ -78,7 +79,11 @@ void TabWidget::setProcess(MyProcess **process){
     process_[0] = process[0];
     process_[1] = process[1];
     setTabText(0, process_[0]->name());
+    setTabIcon(0, process_[0]->icon());
+
     setTabText(1, process_[1]->name());
+    setTabIcon(1, process_[1]->icon());
+    setIconSize(QSize(20,20));
 }
 void TabWidget::createNewTab(int winId){
     //qDebug() << Q_FUNC_INFO;
@@ -120,16 +125,23 @@ bool TabWidget :: event(QEvent *e) {
     //qDebug()<<e;
     return QWidget::event(e);
 }
-void TabWidget::closeEvent (QCloseEvent *event){
+/*void TabWidget::closeEvent (QCloseEvent *event){
     //qDebug() << Q_FUNC_INFO;
     //qDebug()<<"globWinIds"<<globWinIds;
     process_[0]->close();
     process_[1]->close();
-}
+}*/
 
 void TabWidget::startProcess(int index){
     process_[index]->start(process_[index]->processPath());
 }
+void TabWidget::stopProcess()
+{
+   // qDebug() << Q_FUNC_INFO;
+    process_[0]->close();
+    process_[1]->close();
+}
+
 /*
 void gui_wrapper::paintEvent(QPaintEvent* aEvent)
 {
@@ -140,31 +152,56 @@ void gui_wrapper::paintEvent(QPaintEvent* aEvent)
 }
 */
 
+MainWindow::MainWindow(QWidget *parent ){
+
+}
+void MainWindow::closeEvent (QCloseEvent *event){
+    //qDebug() << Q_FUNC_INFO;
+    emit exitApplication();
+}
 #include <QTimer>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    TabWidget *tab=new TabWidget( nullptr );
-    tab->resize(1080,700);
-    QString qbit = "../qBittorrent-4_1_x/src/loto";
-    QString lobstex = "../lobstex2.3/src/qt/lobstex-qt";
-    MyProcess *myProcess [2];
-    myProcess [0] = new MyProcess(tab, tab, qbit, "LoTo");
-    myProcess [1] = new MyProcess(tab->tab2Widget(), tab, lobstex, "LOBSTEX");
-   
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect  screenGeometry = screen->geometry();
+    int height = screenGeometry.height();
+    int width = screenGeometry.width();
+
+    MainWindow *window = new MainWindow();
+
+    window->setWindowTitle(QString::fromUtf8("LoTo"));
+    window->resize(width,height);
+    window->setWindowIcon(QIcon(":/images/Loto.png"));
+    QWidget *centralWidget = new QWidget(window);
+
     //Tab stylesheet
-    QFile stylesheet("formStyle.qss");
+    QFile stylesheet(":/formStyle.qss");
     stylesheet.open(QFile::ReadOnly);
     QString setSheet = QLatin1String(stylesheet.readAll());
-    tab->setStyleSheet(setSheet);
+    window->setStyleSheet(setSheet);
     //end
+
+    TabWidget *tab=new TabWidget( centralWidget );
+    tab->resize(window->width(),window->height());
+    QString qbit = "/usr/local/bin/loto";
+    QString lobstex = "/usr/local/bin/lobstex-qt";
+    MyProcess *myProcess [2];
+    myProcess [0] = new MyProcess(tab, tab, qbit, "LoTo",QIcon(":/images/Loto.png"));
+    myProcess [1] = new MyProcess(tab->tab2Widget(), tab, lobstex, "LOBSTEX",QIcon(":/images/Lobstex.png"));
+
+   // qDebug() << "**********************window************" << window->width() << window->height();
 
     tab->setProcess(myProcess);
     tab->startProcess(0);
     tab->showMaximized();
 
+    window->setCentralWidget(centralWidget);
+    window->showMaximized();
+
+    QObject::connect(window, &MainWindow::exitApplication, tab, &TabWidget::stopProcess);
     return a.exec();
 }
 

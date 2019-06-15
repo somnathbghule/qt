@@ -153,7 +153,6 @@ private slots:
     void on_actionSpeedInTitleBar_triggered();
     void on_actionTopToolBar_triggered();
     void on_actionShowStatusbar_triggered();
-    void on_actionDonateMoney_triggered();
     void on_actionExecutionLogs_triggered(bool checked);
     void on_actionNormalMessages_triggered(bool checked);
     void on_actionInformationMessages_triggered(bool checked);
@@ -169,7 +168,6 @@ private slots:
     void on_actionOptions_triggered();
     void on_actionSetGlobalUploadLimit_triggered();
     void on_actionSetGlobalDownloadLimit_triggered();
-    void on_actionDocumentation_triggered() const;
     void on_actionOpen_triggered();
     void on_actionDownloadFromURL_triggered();
     void on_actionExit_triggered();

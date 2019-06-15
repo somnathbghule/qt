@@ -63,16 +63,12 @@ public:
             "%1\n\n"
             "%2\n\n"
             "<table>"
-            "<tr><td>%3</td><td><a href=\"https://www.qbittorrent.org\">https://www.qbittorrent.org</a></td></tr>"
-            "<tr><td>%4</td><td><a href=\"http://forum.qbittorrent.org\">http://forum.qbittorrent.org</a></td></tr>"
-            "<tr><td>%5</td><td><a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a></td></tr>"
+            "<tr><td>%3</td><td><a href=\"https://www.lobstex.com\">https://www.lobstex.com</a></td></tr>"
             "</table>"
             "</p>")
             .arg(tr("An advanced LoTo client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.")
                 , tr("Copyright %1 2006-2019 The LoTo project").arg(QString::fromUtf8(C_COPYRIGHT))
-                , tr("Home Page:")
-                , tr("Forum:")
-                , tr("Bug Tracker:"));
+                , tr("Home Page:"));
         labelAbout->setText(aboutText);
 
         //labelMascot->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/mascot.png", this));
@@ -92,11 +88,11 @@ public:
         }
 
         // License
-        QFile licensefile(":/gpl.html");
-        if (licensefile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            textBrowserLicense->setHtml(QString::fromUtf8(licensefile.readAll().constData()));
-            licensefile.close();
-        }
+//        QFile licensefile(":/gpl.html");
+//        if (licensefile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+//            textBrowserLicense->setHtml(QString::fromUtf8(licensefile.readAll().constData()));
+//            licensefile.close();
+//        }
 
         // Libraries
         labelQtVer->setText(QT_VERSION_STR);

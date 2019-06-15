@@ -3,15 +3,15 @@
 /* Background  - Base Star	  - #0C141F */
 /* Fonts       - Cyan Tron Legacy - #6FC3DF */
 /* Icons       - Orange Tron Legacy - #DF740C */
-/* Backgroud color - Black - #000000 */
+/* Color Codes */
 /*********************************************************************************/
 .QWidget {
    color: #6FC3DF;
-   background-color: #000000;
+   background-color: #0C141F;
 }
 QWidget#scrollAreaWidgetContents{
    color: #6FC3DF;
-   background-color: #000000;
+   background-color: #0C141F;
 }
 
 QWidget#PropertiesWidget{
@@ -65,6 +65,34 @@ background-color: transparent;
 color:#0C141F;
 }
 
+QMenuBar {
+background-color:#fff;
+font-size: 13px;
+}
+
+QMenuBar::item {
+background-color:#fff;
+color:#333;
+}
+
+QMenuBar::item:selected {
+background-color:#7eb2d3;
+}
+
+QMenu {
+background-color:#f8f6f6;
+font-size: 13px;
+}
+
+QMenu::item {
+color:#333;
+}
+
+QMenu::item:selected {
+background-color:#7eb2d3;
+color:#333;
+}
+
 QTabWidget#tw_tabs::pane > QWidget {
     background-color: transparent;
     color: #6FC3DF;
@@ -84,7 +112,7 @@ QTabWidget#tw_tabs QTabBar::tab{
 }
 
 QTabWidget::pane > QWidget {
-    background-color: #000000;
+    background-color: #0C141F;
     color: #6FC3DF;
 }
 
@@ -101,7 +129,7 @@ QTabWidget::tab-bar {
 /* Style the tab using the tab sub-control. Note that
     it reads QTabBar _not_ QTabWidget */
 QTabBar::tab{
-    background: #000000;
+    background: #0C141F;
     border: 2px solid #6FC3DF;
     border-bottom-color: #0C141F; /* same as the pane color */
     border-top-left-radius: 4px;
@@ -192,8 +220,8 @@ color:#fff;
 }
 
 QPushButton:focus {
- border:none; 
- outline:none; 
+/* border:none; */
+/* outline:none; */
 }
 
 .QPushButton:pressed {
@@ -202,16 +230,11 @@ border-color:#43BDC4;
 color:#fff;
 }
 
-QPushButton#downloadButton, QPushButton#goToDescBtn, QPushButton#copyURLBtn{
-background-color: #D3D3D3;
-color: #A9A9A9;
-}
-
-QPushButton#mainInfosButtonObj, QPushButton#trackersButtonObj, QPushButton#peersButtonObj, QPushButton#URLSeedsButtonObj, QPushButton#filesButtonObj, QPushButton#speedButtonObj, QPushButton#selectAllButton, QPushButton#selectNoneButton, QPushButton#newFeedButton, QPushButton#markReadButton, QPushButton#updateAllButton, QPushButton#rssDownloaderBtn, QPushButton#searchButton, QPushButton#pluginsButton{
+QPushButton#mainInfosButtonObj, QPushButton#trackersButtonObj, QPushButton#peersButtonObj, QPushButton#URLSeedsButtonObj, QPushButton#filesButtonObj, QPushButton#speedButtonObj, QPushButton#selectAllButton, QPushButton#selectNoneButton{
 background-color: #6FC3DF;
 color: #0C141F;
 }
-QPushButton#mainInfosButtonObj:hover, QPushButton#trackersButtonObj:hover, QPushButton#peersButtonObj:hover, QPushButton#URLSeedsButtonObj:hover, QPushButton#filesButtonObj:hover, QPushButton#speedButtonObj:hover,QPushButton#selectAllButton:hover,QPushButton#selectNoneButton:hover, QPushButton#newFeedButton:hover, QPushButton#markReadButton:hover, QPushButton#updateAllButton:hover, QPushButton#rssDownloaderBtn:hover, QPushButton#searchButton:hover, QPushButton#pluginsButton:hover{
+QPushButton#mainInfosButtonObj:hover, QPushButton#trackersButtonObj:hover, QPushButton#peersButtonObj:hover, QPushButton#URLSeedsButtonObj:hover, QPushButton#filesButtonObj:hover, QPushButton#speedButtonObj:hover,QPushButton#selectAllButton:hover,QPushButton#selectNoneButton:hover {
 background-color:#DF740C;
 border-color:#43BDC4;
 }
@@ -237,7 +260,7 @@ border-color:#43BDC4;
 color:#fff;
 }
 
-QPushButton#RaisedMessageBoxObj:focus{
+QPushButton#RaisedMessageBoxObj:focus {
  border:none; 
  outline:none; 
 }
@@ -426,7 +449,7 @@ border:1px solid #232434;
 padding: 3px 5px 3px 5px;
 background:#fcfcfc;
 min-height:25px;
-color:#000000;
+color:#818181;
 }
 
 QComboBox:checked {
@@ -471,7 +494,6 @@ background:#fff;
 QComboBox::item:selected {
 border:0px solid transparent;
 background:#f2f2f2;
-color:#000000;
 }
 
 QComboBox::indicator {

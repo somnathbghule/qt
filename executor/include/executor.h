@@ -9,7 +9,7 @@
 #include <QVector>
 #include <QHBoxLayout>
 #include <QThread>
-
+#include <QMainWindow>
 
 
 class TabWidget;
@@ -20,10 +20,11 @@ class MyProcess : public QProcess
     Q_OBJECT
 
 public:
-    MyProcess(QObject *parent , TabWidget *widget , QString &processPath, QString name); 
+    MyProcess(QObject *parent , TabWidget *widget , QString &processPath, QString name, QIcon icon);
     ~MyProcess() {}
     QString processPath() { return processPath_; }
     QString name() { return name_; }
+    QIcon icon() { return icon_; }
 public slots:
     void myReadyRead();
     void myReadyReadStandardOutput();
@@ -36,6 +37,7 @@ private:
     TabWidget *widget_;
     QString processPath_;
     QString name_;
+    QIcon icon_;
 };
 
 class TabWidget : public QTabWidget{
@@ -53,6 +55,7 @@ public slots:
 	void tabclicked(int);
     void createNewTab(int);
     void startProcess();
+    void stopProcess();
 signals:
     void tabAdded();
 private:
@@ -63,5 +66,16 @@ private:
     QWidget *qbitWidget_;
 };
 
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+public:
+    MainWindow(QWidget *parent=0 );
+protected:
+    void closeEvent(QCloseEvent* event);
+signals:
+    void exitApplication();
+
+};
 
 #endif 

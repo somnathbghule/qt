@@ -189,8 +189,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionBottomPriority->setIcon(GuiIconProvider::instance()->getIcon("go-bottom"));
     //m_ui->actionDelete->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
     m_ui->actionDelete->setIcon(GuiIconProvider::instance()->getIcon("dialog-cancel"));	//Tejaswini : Changed delete button icon
-    m_ui->actionDocumentation->setIcon(GuiIconProvider::instance()->getIcon("help-contents"));
-    m_ui->actionDonateMoney->setIcon(GuiIconProvider::instance()->getIcon("wallet-open"));
+   // m_ui->actionDocumentation->setIcon(GuiIconProvider::instance()->getIcon("help-contents"));
+   // m_ui->actionDonateMoney->setIcon(GuiIconProvider::instance()->getIcon("wallet-open"));
     m_ui->actionExit->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
     m_ui->actionIncreasePriority->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
     m_ui->actionTopPriority->setIcon(GuiIconProvider::instance()->getIcon("go-top"));
@@ -478,8 +478,8 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
     //Load stylesheet file
-    QString qssFilePath = QCoreApplication::applicationDirPath();
-    qssFilePath += "/css/formStyle.qss";
+    QString qssFilePath = /*QCoreApplication::applicationDirPath()*/"";
+    qssFilePath += ":/css/formStyle.qss";
     QFile stylesheet(qssFilePath);
     stylesheet.open(QFile::ReadOnly);
     QString setSheet = QLatin1String(stylesheet.readAll());
@@ -763,11 +763,6 @@ void MainWindow::updateNbTorrents()
     m_tabs->setTabText(0, tr("Transfers (%1)").arg(m_transferListWidget->getSourceModel()->rowCount()));
 }
 
-void MainWindow::on_actionDocumentation_triggered() const
-{
-    QDesktopServices::openUrl(QUrl("http://doc.qbittorrent.org"));
-}
-
 void MainWindow::tabChanged(int newTab)
 {
     Q_UNUSED(newTab);
@@ -905,7 +900,7 @@ void MainWindow::createKeyboardShortcuts()
     QShortcut *switchSearchFilterShortcut = new QShortcut(QKeySequence::Find, m_transferListWidget);
     connect(switchSearchFilterShortcut, &QShortcut::activated, this, &MainWindow::focusSearchFilter);
 
-    m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
+   // m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
     m_ui->actionOptions->setShortcut(Qt::ALT + Qt::Key_O);
     m_ui->actionStart->setShortcut(Qt::CTRL + Qt::Key_S);
     m_ui->actionStartAll->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_S);
@@ -1894,11 +1889,6 @@ void MainWindow::toggleAlternativeSpeeds()
 {
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     session->setAltGlobalSpeedLimitEnabled(!session->isAltGlobalSpeedLimitEnabled());
-}
-
-void MainWindow::on_actionDonateMoney_triggered()
-{
-    QDesktopServices::openUrl(QUrl("https://www.qbittorrent.org/donate"));
 }
 
 void MainWindow::showConnectionSettings()

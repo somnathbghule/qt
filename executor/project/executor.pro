@@ -3,15 +3,25 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = Lobsty
+TARGET = LoTo
 INCLUDEPATH += .
 
 QT += core gui
 QT += widgets
 
 # Input
-SOURCES += executor.cpp
-HEADERS += executor.h
 
-DISTFILES += \
-    formStyle.qss
+INCLUDEPATH += ../include \
+
+HEADERS += ../include \
+           ../include/executor.h
+
+SOURCES += ../src/executor.cpp
+
+RESOURCES += \
+    ../resources/resources.qrc
+
+unix{
+target.path = /usr/local/bin
+INSTALLS += target
+}

@@ -356,9 +356,6 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
              <bold>false</bold>
             </font>
            </property>
-           <property name="styleSheet">
-            <string notr="true">color: rgb(111, 195, 223);</string>
-           </property>
            <property name="text">
             <string>Apply Rule to Feeds:</string>
            </property>

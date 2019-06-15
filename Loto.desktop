@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=true
+Exec=/home/tejaswini/Documents/qt-private/executor/project/LoTo
+Name=LoTo
+Comment=comment here
+Icon=/home/tejaswini/Documents/qt-private/executor/resources/images/Loto_Icon.png
