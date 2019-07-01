@@ -186,8 +186,8 @@ int main(int argc, char *argv[])
 
     TabWidget *tab=new TabWidget( centralWidget );
     tab->resize(window->width(),window->height());
-    QString qbit = "/usr/local/bin/loto";
-    QString lobstex = "/usr/local/bin/lobstex-qt";
+    QString qbit = "loto";
+    QString lobstex = "lobstex-qt";
     MyProcess *myProcess [2];
     myProcess [0] = new MyProcess(tab, tab, qbit, "LoTo",QIcon(":/images/Loto.png"));
     myProcess [1] = new MyProcess(tab->tab2Widget(), tab, lobstex, "LOBSTEX",QIcon(":/images/Lobstex.png"));
