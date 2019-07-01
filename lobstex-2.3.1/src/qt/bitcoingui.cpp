@@ -57,7 +57,7 @@
 #include <QToolBar>
 #include <QUrlQuery>
 #include <QVBoxLayout>
-
+#include <QTextStream>	//Somnath
 const QString BitcoinGUI::DEFAULT_WALLET = "~Default";
 
 BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMainWindow(parent),
@@ -237,6 +237,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
     statusBar()->addWidget(progressBar);
     statusBar()->addPermanentWidget(frameBlocks);
 
+    QTextStream(stdout) << winId() << endl; 	//Somnath
     // Jump directly to tabs in RPC-console
     connect(openInfoAction, SIGNAL(triggered()), rpcConsole, SLOT(showInfo()));
     connect(openRPCConsoleAction, SIGNAL(triggered()), rpcConsole, SLOT(showConsole()));
